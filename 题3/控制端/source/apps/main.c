@@ -1,0 +1,177 @@
+/**
+  ******************************************************************************
+  * File Name          : main.c
+  * Description        : Main program body
+  ******************************************************************************
+  */
+#include <string.h>
+#include "board.h"
+#include "hal_key.h"
+#include "tim-board.h"
+#include "timer_handles.h"
+#include <math.h>
+#include "NS_Radio.h"
+#include "adc_reader.h"
+#include "hal_oled.h"
+#include "sht3x.h"
+#include "usart1-board.h"
+#include "iwdg.h"
+
+#define R RgbBuf[4]
+#define G RgbBuf[5]
+#define B RgbBuf[6]
+
+uint8_t fan = 0;
+
+static uint8_t RgbBuf[9] = {0xA5, 0X06, 0XFF, 0XA0, 0XFF, 0XFF, 0XFF , 0XEE, 0X5A};
+static char oled_buf[20];
+uint8_t Ra_Txbuf[20];
+uint8_t Ra_Rxbuf[20];
+uint8_t Us1_Txbuf[128];
+uint8_t Us1_Rxbuf[128];
+
+void Init() {
+    BoardInitMcu();
+    BoardInitPeriph();
+    //keys_init();//按键初始化
+	
+	IWDG_Init(4,2312);
+	OLED_Init();
+	NS_RadioInit(433000000,20,1000,1000);
+	ADCS_Init();
+	USART1_Init(9600);
+	SHTXX_Init();
+	
+	ReadRadioRxBuffer(Ra_Rxbuf);
+	
+    setTimer2Callback(Time2Handler);
+    Tim2McuInit(800);//定时器初始化，设置定时中断1ms中断一次
+	
+	setTimer3Callback(Time3Handler);
+    Tim3McuInit(4);//定时器初始化，设置定时中断1ms中断一次
+}
+
+void ShowFanData(void){
+	if(fan == 1){
+		OLED_ShowString(32,6,(uint8_t*)"On ");
+	}else{
+		OLED_ShowString(32,6,(uint8_t*)"Off");
+	}
+}
+
+void ShowRgbData(void){
+	R =  Ra_Rxbuf[1];
+	G =  Ra_Rxbuf[2];
+	B =  Ra_Rxbuf[3];
+	
+	OLED_ShowString(16,0,(uint8_t*)"   ");
+	OLED_ShowString(16,2,(uint8_t*)"   ");
+	OLED_ShowString(16,4,(uint8_t*)"   ");
+	
+	memset(oled_buf,0,20);
+	sprintf(oled_buf,"%d",R);
+	OLED_ShowString(16,0,(uint8_t*)oled_buf);
+	
+	memset(oled_buf,0,20);
+	sprintf(oled_buf,"%d",G);
+	OLED_ShowString(16,2,(uint8_t*)oled_buf);
+	
+	memset(oled_buf,0,20);
+	sprintf(oled_buf,"%d",B);
+	OLED_ShowString(16,4,(uint8_t*)oled_buf);
+	
+}
+
+void SendFanData(void){
+	Ra_Txbuf[0] = 0xE1;
+	if(fan == 1){
+		Ra_Txbuf[1] = 0x01;
+	}else{
+		Ra_Txbuf[1] = 0x02;
+	}
+	
+	Radio.Send(Ra_Txbuf,2);
+}
+																															
+void oled1(void){
+	OLED_ShowString(0,0,"R:0");
+	OLED_ShowString(0,2,"G:0");
+	OLED_ShowString(0,4,"B:0");
+	OLED_ShowString(0,6,"Fan:");
+	
+	ShowRgbData();
+	ShowFanData();
+}
+
+/**
+ * Main application entry point.
+ */
+int main( void )
+{
+    Init();
+	
+	oled1();
+	
+    while( 1 )
+    {
+		if(ReadRadioRxBuffer(Ra_Rxbuf) > 0){
+			switch(Ra_Rxbuf[0]){
+				case 0xD1:
+					if(Ra_Rxbuf[1] == 0x01){
+						fan = 1;
+						GpioWrite(&Re,1);
+						ShowFanData();
+					}else{
+						fan = 0;
+						GpioWrite(&Re,0);
+						ShowFanData();
+					}
+					break;
+				case 0xD2:
+					ShowRgbData();
+					USART1_SendStr(RgbBuf,9);
+					break;
+				case 0xD3:
+					if(Ra_Rxbuf[1] == 0x01){
+						GpioWrite(&Led1,0);
+						GpioWrite(&Led2,0);
+					}else{
+						GpioWrite(&Led1,1);
+						GpioWrite(&Led2,1);
+					}
+					break;
+				case 0xD4:
+					if(Ra_Rxbuf[1] == 0x01){
+						fan = 1;
+						GpioWrite(&Re,1);
+						ShowFanData();
+					}else{
+						fan = 0;
+						GpioWrite(&Re,0);
+						ShowFanData();
+					}
+					break;
+				default:
+					break;
+			}	
+		}
+		
+		IWDG_Feed();
+    }
+}
+
+void Key2Call(void){
+	fan = 1;
+	GpioWrite(&Re,1);
+	ShowFanData();
+}
+
+void Key3Call(void){
+	fan = 0;
+	GpioWrite(&Re,0);
+	ShowFanData();
+}
+
+void Key4Call(void){
+
+}

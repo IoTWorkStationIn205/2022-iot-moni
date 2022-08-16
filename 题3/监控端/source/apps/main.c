@@ -89,8 +89,8 @@ void CollectSensorData(void){
 void ShowSensorData(void){
 	
 	OLED_ShowString(40,0,(uint8_t*)"     ");
-	OLED_ShowString(40,0,(uint8_t*)"     ");
-	OLED_ShowString(48,0,(uint8_t*)"        ");
+	OLED_ShowString(40,2,(uint8_t*)"     ");
+	OLED_ShowString(48,4,(uint8_t*)"        ");
 	
 	memset(oled_buf,0,20);
 	sprintf(oled_buf,"%.2f",temp);

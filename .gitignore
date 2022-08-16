@@ -1,5 +1,6 @@
 *.pbi
 *.r51
+!\题2\CC2530_lib\basicrf
 
 # Keil Generated output files in the sub-directories .\Listings and .\Objects
 *.lst
@@ -20,5 +21,3 @@
 *.uvguix.*
 *.uvgui.*
 
-#JLINK file
-JLinkLog.txt

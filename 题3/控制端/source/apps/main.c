@@ -22,6 +22,9 @@
 #define B RgbBuf[6]
 
 uint8_t fan = 0;
+uint8_t force_fan = 3;
+
+uint8_t time3Counter = 0;
 
 static uint8_t RgbBuf[9] = {0xA5, 0X06, 0XFF, 0XA0, 0XFF, 0XFF, 0XFF , 0XEE, 0X5A};
 static char oled_buf[20];
@@ -51,8 +54,8 @@ void Init() {
     Tim3McuInit(4);//定时器初始化，设置定时中断1ms中断一次
 }
 
-void ShowFanData(void){
-	if(fan == 1){
+void ShowFanData(uint8_t fanData){
+	if(fanData == 1){
 		OLED_ShowString(32,6,(uint8_t*)"On ");
 	}else{
 		OLED_ShowString(32,6,(uint8_t*)"Off");
@@ -100,7 +103,7 @@ void oled1(void){
 	OLED_ShowString(0,6,"Fan:");
 	
 	ShowRgbData();
-	ShowFanData();
+	ShowFanData(0);
 }
 
 /**
@@ -118,13 +121,17 @@ int main( void )
 			switch(Ra_Rxbuf[0]){
 				case 0xD1:
 					if(Ra_Rxbuf[1] == 0x01){
-						fan = 1;
-						GpioWrite(&Re,1);
-						ShowFanData();
+						if(force_fan == 3){
+							fan = 1;
+							GpioWrite(&Re,1);
+							ShowFanData(1);
+						}
 					}else{
-						fan = 0;
-						GpioWrite(&Re,0);
-						ShowFanData();
+						if(force_fan == 3){
+							fan = 0;
+							GpioWrite(&Re,0);
+							ShowFanData(0);
+						}
 					}
 					break;
 				case 0xD2:
@@ -142,13 +149,13 @@ int main( void )
 					break;
 				case 0xD4:
 					if(Ra_Rxbuf[1] == 0x01){
-						fan = 1;
+						force_fan = 1;
 						GpioWrite(&Re,1);
-						ShowFanData();
+						ShowFanData(1);
 					}else{
-						fan = 0;
+						force_fan = 0;
 						GpioWrite(&Re,0);
-						ShowFanData();
+						ShowFanData(0);
 					}
 					break;
 				default:
@@ -160,16 +167,20 @@ int main( void )
     }
 }
 
+void Time3Call(void){
+	
+}
+
 void Key2Call(void){
-	fan = 1;
+	force_fan = 1;
 	GpioWrite(&Re,1);
-	ShowFanData();
+	ShowFanData(1);
 }
 
 void Key3Call(void){
-	fan = 0;
+	force_fan = 0;
 	GpioWrite(&Re,0);
-	ShowFanData();
+	ShowFanData(0);
 }
 
 void Key4Call(void){

@@ -8,15 +8,15 @@
 #define SHT_TYPE_SHT1X 0x00
 #define SHT_TYPE_SHT3X 0x01
 
-static uint8 SHT_TypeFlag = 0x00;//Mean£º0-SHT1X, 1-SHT3X
+static uint8 SHT_TypeFlag = 0x00;//Meanï¼š0-SHT1X, 1-SHT3X
 
 /*******************************************************************
-*º¯Êı£ºvoid SHT_Init(void)
-*¹¦ÄÜ£ºÎÂÊª¶È´«¸ĞÆ÷³õÊ¼»¯
-*ÊäÈë£ºÎŞ
-*Êä³ö£ºÎŞ
-*·µ»Ø£ºÎŞ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼švoid SHT_Init(void)
+*åŠŸèƒ½ï¼šæ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨åˆå§‹åŒ–
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 *******************************************************************/
 void SHT_Init(void)
 {
@@ -35,24 +35,24 @@ void SHT_Init(void)
 #if (ENGINEER_DEBUG)
     if(SHT_TypeFlag != SHT_TYPE_SHT1X)
     {
-        printf("ÎÂÊª¶È´«¸ĞÆ÷ĞÍºÅ£ºSHT3X\r\n");
+        printf("æ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨å‹å·ï¼šSHT3X\r\n");
     }
     else
     {
-        printf("ÎÂÊª¶È´«¸ĞÆ÷ĞÍºÅ£ºSHT1X\r\n");
+        printf("æ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨å‹å·ï¼šSHT1X\r\n");
     }
 #endif
 }
 
 /*******************************************************************
-*º¯Êı£ºvoid SHT_SmpSnValue(float *tem, float *hum)
-*¹¦ÄÜ£º²É¼¯´«¸ĞÆ÷Êı¾İ£ºÎÂ¶È¡¢Êª¶È
-*ÊäÈë£ºÎŞ
-*Êä³ö£º
-*       int8 *tem, ÎÂ¶È
-*       uint8 *hum, Êª¶È
-*·µ»Ø£ºÎŞ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼švoid SHT_SmpSnValue(float *tem, float *hum)
+*åŠŸèƒ½ï¼šé‡‡é›†ä¼ æ„Ÿå™¨æ•°æ®ï¼šæ¸©åº¦ã€æ¹¿åº¦
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼š
+*       int8 *tem, æ¸©åº¦
+*       uint8 *hum, æ¹¿åº¦
+*è¿”å›ï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 *******************************************************************/
 void SHT_SmpSnValue(float *tem, float *hum)
 {
@@ -60,7 +60,7 @@ void SHT_SmpSnValue(float *tem, float *hum)
     if(SHT_TypeFlag != SHT_TYPE_SHT1X)
     {
         etError error;       // error code
-        float      temperature; // temperature [¡æ]
+        float      temperature; // temperature [â„ƒ]
         float      humidity;    // relative humidity [%RH]
       
         error = NO_ERROR;
@@ -76,7 +76,7 @@ void SHT_SmpSnValue(float *tem, float *hum)
             }
         }
 #if (ENGINEER_DEBUG)
-        printf("SHT3X ÎÂ¶È=%f¡æ, Êª¶È=%f%%\r\n", temperature, humidity);
+        printf("SHT3X æ¸©åº¦=%fâ„ƒ, æ¹¿åº¦=%f%%\r\n", temperature, humidity);
 #endif
         *tem=temperature;
         *hum=humidity;
@@ -88,26 +88,26 @@ void SHT_SmpSnValue(float *tem, float *hum)
         *tem=tem_val;
         *hum=hum_val;
 #if (ENGINEER_DEBUG)
-        printf("SHT1X ÎÂ¶È:%d¡æ Êª¶È:%d%%\r\n", tem_val, hum_val);
+        printf("SHT1X æ¸©åº¦:%dâ„ƒ æ¹¿åº¦:%d%%\r\n", tem_val, hum_val);
 #endif
     }
 #if (ENGINEER_DEBUG)
     float dew_point;
     dew_point=calc_dewpoint((float)(*tem), (float)(*hum)); //calculate dew point
-    printf("SHT ÎÂ¶È:%d¡æ Êª¶È:%d%%\r\n", *tem, *hum);
-    printf("Â¶µãDew Point:%5.1f¡æ\n", dew_point);
+    printf("SHT æ¸©åº¦:%dâ„ƒ æ¹¿åº¦:%d%%\r\n", *tem, *hum);
+    printf("éœ²ç‚¹Dew Point:%5.1fâ„ƒ\n", dew_point);
 #endif
 }
 
 /*******************************************************************
-*º¯Êı£ºvoid call_sht11(float *tem, float *hum)
-*¹¦ÄÜ£º²É¼¯´«¸ĞÆ÷Êı¾İ£ºÎÂ¶È¡¢Êª¶È
-*ÊäÈë£ºÎŞ
-*Êä³ö£º
-*       unsigned int *tem, ÎÂ¶È
-*       unsigned int *hum, Êª¶È
-*·µ»Ø£ºÎŞ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼švoid call_sht11(float *tem, float *hum)
+*åŠŸèƒ½ï¼šé‡‡é›†ä¼ æ„Ÿå™¨æ•°æ®ï¼šæ¸©åº¦ã€æ¹¿åº¦
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼š
+*       unsigned int *tem, æ¸©åº¦
+*       unsigned int *hum, æ¹¿åº¦
+*è¿”å›ï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 *******************************************************************/
 void call_sht11(float *tem, float *hum)
 {

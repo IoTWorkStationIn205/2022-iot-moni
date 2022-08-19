@@ -3,33 +3,33 @@
 
 #include <stdbool.h>
 
-//OLEDÏÔÊ¾ÆÁÏà¹Ø
-#define USE_OLED_RST 				false 	//Ã»ÓÐÊ¹ÓÃµ½OLEDÏÔÊ¾ÆÁµÄRST¸´Î»½Å
+//OLEDæ˜¾ç¤ºå±ç›¸å…³
+#define USE_OLED_RST 				false 	//æ²¡æœ‰ä½¿ç”¨åˆ°OLEDæ˜¾ç¤ºå±çš„RSTå¤ä½è„š
 
-//LEDµÆÏà¹Ø
+//LEDç¯ç›¸å…³
 #define USE_LED3_TO_LED4 			false
 
-//LORAÄ£¿éÏà¹Ø
-#define USE_SX1276_RESET 			false 	//Ã»ÓÐÊ¹ÓÃ¸ÃÒý½Å
-#define USE_SX1276_DIO2_TO_DIO5 	false 	//Ã»ÓÐÊ¹ÓÃSX_1276µÄDIO2µ½DIO5µÄÒý½Å
-#define	USE_SX1276_RXTX 			false 	//Ã»ÓÐÊ¹ÓÃ¸ÃÒý½Å
+//LORAæ¨¡å—ç›¸å…³
+#define USE_SX1276_RESET 			false 	//æ²¡æœ‰ä½¿ç”¨è¯¥å¼•è„š
+#define USE_SX1276_DIO2_TO_DIO5 	false 	//æ²¡æœ‰ä½¿ç”¨SX_1276çš„DIO2åˆ°DIO5çš„å¼•è„š
+#define	USE_SX1276_RXTX 			false 	//æ²¡æœ‰ä½¿ç”¨è¯¥å¼•è„š
 #define USE_RADIO_ANT_SWITCH 		false
 
-//LORAÄ£¿éSX1276/1278¼Ä´æÆ÷ÅäÖÃÏà¹Ø
+//LORAæ¨¡å—SX1276/1278å¯„å­˜å™¨é…ç½®ç›¸å…³
 
-//µç³ØÏà¹Ø
+//ç”µæ± ç›¸å…³
 #define USE_BATTERY 				false
 
-//µ÷ÊÔ·ÂÕæÏà¹Ø
-#define ENGINEER_DEBUG 				false	//µ÷ÊÔÐÅÏ¢¿ª¹Ø£¬trueÊ±»á´òÓ¡printfµ½´®¿Ú
+//è°ƒè¯•ä»¿çœŸç›¸å…³
+#define ENGINEER_DEBUG 				false	//è°ƒè¯•ä¿¡æ¯å¼€å…³ï¼Œtrueæ—¶ä¼šæ‰“å°printfåˆ°ä¸²å£
 #define USE_PIN_NC 					false
-#define NEWLAND_ACCELERATE_DEBUG	true	//¼ÓËÙ·¢ËÍÊ±¼ä
-#define NEWLAND_USE_RX_TX_RF_SET	true	//ÎÞÏßÊÕ·¢ÉèÖÃÊ¹ÓÃÐÂ´óÂ½¶¨Òå
-#define NEWLAND_EXHIBITION			true	//Õ¹Ê¾ÊÕ·¢´«Êä
+#define NEWLAND_ACCELERATE_DEBUG	true	//åŠ é€Ÿå‘é€æ—¶é—´
+#define NEWLAND_USE_RX_TX_RF_SET	true	//æ— çº¿æ”¶å‘è®¾ç½®ä½¿ç”¨æ–°å¤§é™†å®šä¹‰
+#define NEWLAND_EXHIBITION			true	//å±•ç¤ºæ”¶å‘ä¼ è¾“
 
-//³£Êý
-#define NEWLAND_LORAWAN_NETWORK_ID          (uint32_t)(0x004E4C45) //"NLE"µÄASCIIÂëÖµ£¬OTAAÈëÍøÊ±Ê¹ÓÃ
-#define NEWLAND_LORAWAN_SKEY 				{ 'N', 'e', 'w', 'l', 'a', 'n', 'd', ' ', 'E', 'D', 'U', '2', '0', '1', '8', '2' }//»á»°ÃÜÔ¿£¬¿ÉÒÔÓÃÓÚÇø·ÖÃ¿¸ö²»Í¬ÍøÂç
+//å¸¸æ•°
+#define NEWLAND_LORAWAN_NETWORK_ID          (uint32_t)(0x004E4C45) //"NLE"çš„ASCIIç å€¼ï¼ŒOTAAå…¥ç½‘æ—¶ä½¿ç”¨
+#define NEWLAND_LORAWAN_SKEY 				{ 'N', 'e', 'w', 'l', 'a', 'n', 'd', ' ', 'E', 'D', 'U', '2', '0', '1', '8', '2' }//ä¼šè¯å¯†é’¥ï¼Œå¯ä»¥ç”¨äºŽåŒºåˆ†æ¯ä¸ªä¸åŒç½‘ç»œ
 #if (NEWLAND_USE_RX_TX_RF_SET != false)
 #define NEWLAND_RECEIVE_DELAY1 (uint16_t)(3000)
 #ifdef TYPE_CLASS_C

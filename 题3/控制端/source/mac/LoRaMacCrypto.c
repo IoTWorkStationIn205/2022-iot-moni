@@ -15,7 +15,7 @@ Description: LoRa MAC layer implementation
 
 License: Revised BSD License, see LICENSE.TXT file include in the project
 
-Maintainer: Miguel Luis ( Semtech ), Gregory Cristian ( Semtech ) and Daniel Jäckle ( STACKFORCE )
+Maintainer: Miguel Luis ( Semtech ), Gregory Cristian ( Semtech ) and Daniel JÃ¤ckle ( STACKFORCE )
 */
 #include <stdlib.h>
 #include <stdint.h>

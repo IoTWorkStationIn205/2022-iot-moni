@@ -164,7 +164,7 @@ int main( void )
 						GpioWrite(&Re,1);
 						ShowFanData(1);
 					}else{
-						WriteFanLock(1);
+						WriteFanLock(0);
 						fan = 0;
 						GpioWrite(&Re,0);
 						ShowFanData(0);

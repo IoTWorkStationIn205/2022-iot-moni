@@ -31,7 +31,7 @@ uint8_t Us1_Rxbuf[128];
 void Init() {
     BoardInitMcu();
     BoardInitPeriph();
-    //keys_init();//°´¼ü³õÊ¼»¯
+    //keys_init();//æŒ‰é”®åˆå§‹åŒ–
 	
 	IWDG_Init(4,2312);
 	OLED_Init();
@@ -43,10 +43,10 @@ void Init() {
 	ReadRadioRxBuffer(Ra_Rxbuf);
 	
     setTimer2Callback(Time2Handler);
-    Tim2McuInit(1000);//¶¨Ê±Æ÷³õÊ¼»¯£¬ÉèÖÃ¶¨Ê±ÖĞ¶Ï1msÖĞ¶ÏÒ»´Î
+    Tim2McuInit(1000);//å®šæ—¶å™¨åˆå§‹åŒ–ï¼Œè®¾ç½®å®šæ—¶ä¸­æ–­1msä¸­æ–­ä¸€æ¬¡
 	
 	setTimer3Callback(Time3Handler);
-    Tim3McuInit(4);//¶¨Ê±Æ÷³õÊ¼»¯£¬ÉèÖÃ¶¨Ê±ÖĞ¶Ï1msÖĞ¶ÏÒ»´Î
+    Tim3McuInit(4);//å®šæ—¶å™¨åˆå§‹åŒ–ï¼Œè®¾ç½®å®šæ—¶ä¸­æ–­1msä¸­æ–­ä¸€æ¬¡
 }
 
 void xiafa(void){

@@ -314,8 +314,8 @@ void SystemClockConfig( void )
     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
     RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL8;
-    //RCC_OscInitStruct.PLL.PLLDIV = RCC_PLL_DIV3;//¹Ù·½Ô­°æÅäÖÃ£ºÍâ²¿¾§Õñ12MHZ£¬SystemCoreClock  = 12000000*8/3 =32000000HZ;
-    RCC_OscInitStruct.PLL.PLLDIV = RCC_PLL_DIV2;//ĞÂ´óÂ½LORAÄ£¿éÉÏµÄÅäÖÃ£ºÍâ²¿¾§Õñ8MHZ£¬SystemCoreClock  = 8000000*8/2 =32000000HZ;
+    //RCC_OscInitStruct.PLL.PLLDIV = RCC_PLL_DIV3;//å®˜æ–¹åŸç‰ˆé…ç½®ï¼šå¤–éƒ¨æ™¶æŒ¯12MHZï¼ŒSystemCoreClock  = 12000000*8/3 =32000000HZ;
+    RCC_OscInitStruct.PLL.PLLDIV = RCC_PLL_DIV2;//æ–°å¤§é™†LORAæ¨¡å—ä¸Šçš„é…ç½®ï¼šå¤–éƒ¨æ™¶æŒ¯8MHZï¼ŒSystemCoreClock  = 8000000*8/2 =32000000HZ;
     if( HAL_RCC_OscConfig( &RCC_OscInitStruct ) != HAL_OK )
     {
         assert_param( FAIL );
@@ -403,11 +403,11 @@ void SysTick_Handler( void )
 uint8_t GetBoardPowerSource( void )
 #if (USE_BATTERY != false)
 {
-	return BATTERY_POWER;//µç³Ø¹©µç
+	return BATTERY_POWER;//ç”µæ± ä¾›ç”µ
 }
 #else
 {
-	return USB_POWER;//USB¹©µç
+	return USB_POWER;//USBä¾›ç”µ
 }
 #endif /*(USE_BATTERY != false)*/
 

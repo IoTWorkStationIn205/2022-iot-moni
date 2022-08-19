@@ -91,13 +91,13 @@
 #define HAL_BOARD_IO_SHT_SDA_PORT           2
 #define HAL_BOARD_IO_SHT_SDA_PIN            3
 
-//SR04£¨³¬Éù²¨£©
+//SR04Â£Â¨Â³Â¬Ã‰Ã¹Â²Â¨Â£Â©
 #define HAL_BOARD_IO_SR04_TX_PORT           2
 #define HAL_BOARD_IO_SR04_TX_PIN            3
 #define HAL_BOARD_IO_SR04_RX_PORT           2
 #define HAL_BOARD_IO_SR04_RX_PIN            4
 
-//TCS (ÑÕÉ«)
+//TCS (Ã‘Ã•Ã‰Â«)
 #define HAL_BOARD_IO_TCS_S2_PORT           2
 #define HAL_BOARD_IO_TCS_S2_PIN            3
 #define HAL_BOARD_IO_TCS_S3_PORT           2
@@ -258,7 +258,7 @@
 #define HAL_SHT_SDA_DIR_IN()           MCU_IO_INPUT(HAL_BOARD_IO_SHT_SDA_PORT, HAL_BOARD_IO_SHT_SDA_PIN,MCU_IO_PULLUP)
 #define HAL_SHT_SDA_VAL()              MCU_IO_GET(HAL_BOARD_IO_SHT_SDA_PORT, HAL_BOARD_IO_SHT_SDA_PIN)
 
-//SR04£¨³¬Éù²¨£©
+//SR04Â£Â¨Â³Â¬Ã‰Ã¹Â²Â¨Â£Â©
 
 #define HAL_SHT_TX_DIR_OUT()          MCU_IO_OUTPUT(HAL_BOARD_IO_SR04_TX_PORT, HAL_BOARD_IO_SR04_TX_PIN,0)
 #define HAL_SHT_TX_SET()              MCU_IO_OUTPUT(HAL_BOARD_IO_SR04_TX_PORT, HAL_BOARD_IO_SR04_TX_PIN,1)
@@ -267,11 +267,11 @@
 #define HAL_SHT_RX_DIR_IN()           MCU_IO_INPUT(HAL_BOARD_IO_SR04_RX_PORT, HAL_BOARD_IO_SR04_RX_PIN,MCU_IO_PULLUP)
 #define HAL_SHT_RX_VAL()              MCU_IO_GET(HAL_BOARD_IO_SR04_RX_PORT, HAL_BOARD_IO_SR04_RX_PIN)
 
-//flame(»ðÑæ)
+//flame(Â»Ã°Ã‘Ã¦)
 #define HAL_SHT_FLAME_DIR_IN()           MCU_IO_INPUT(HAL_BOARD_IO_ADC_PORT, HAL_BOARD_IO_ADC_CH,MCU_IO_PULLUP)
 #define HAL_SHT_FLAME_VAL()              MCU_IO_GET(HAL_BOARD_IO_ADC_PORT, HAL_BOARD_IO_ADC_CH)
 
-//TCS(ÑÕÉ«)
+//TCS(Ã‘Ã•Ã‰Â«)
 #define HAL_SHT_S2_DIR_OUT()          MCU_IO_OUTPUT(HAL_BOARD_IO_TCS_S2_PORT, HAL_BOARD_IO_TCS_S2_PIN,0)
 #define HAL_SHT_S2_SET()              MCU_IO_OUTPUT(HAL_BOARD_IO_TCS_S2_PORT, HAL_BOARD_IO_TCS_S2_PIN,1)
 #define HAL_SHT_S2_CLR()              MCU_IO_OUTPUT(HAL_BOARD_IO_TCS_S2_PORT, HAL_BOARD_IO_TCS_S2_PIN,0)

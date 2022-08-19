@@ -3,11 +3,11 @@
 #include "stm32l1xx_hal_flash.h"
 
 /**********************************************************************************************
-*º¯Êı£ºuint32_t STMFLASH_ReadWord(uint32_t faddr)
-*¹¦ÄÜ£º¶ÁÈ¡Ö¸¶¨µØÖ·µÄ×Ö(32Î»Êı¾İ)
-*ÊäÈë£ºfaddr:¶ÁµØÖ·(´ËµØÖ·±ØĞëÎª2µÄ±¶Êı!!)
-*Êä³ö£º¶ÔÓ¦Êı¾İ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼šuint32_t STMFLASH_ReadWord(uint32_t faddr)
+*åŠŸèƒ½ï¼šè¯»å–æŒ‡å®šåœ°å€çš„å­—(32ä½æ•°æ®)
+*è¾“å…¥ï¼šfaddr:è¯»åœ°å€(æ­¤åœ°å€å¿…é¡»ä¸º2çš„å€æ•°!!)
+*è¾“å‡ºï¼šå¯¹åº”æ•°æ®
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 **********************************************************************************************/
 uint32_t STMFLASH_ReadWord(uint32_t faddr)
 {
@@ -15,79 +15,79 @@ uint32_t STMFLASH_ReadWord(uint32_t faddr)
 }
 
 /**********************************************************************************************
-*º¯Êı£ºvoid STMFLASH_Write(uint32_t WriteAddr,uint32_t *pBuffer,uint32_t NumToWrite)
-*¹¦ÄÜ£º¶ÁÈ¡EEPROMÊı×éĞ´Èë²Ù×÷
-*ÊäÈë£ºWriteAddr:ÆğÊ¼µØÖ·
-			 pBuffer:Êı¾İÖ¸Õë
-			 NumToWrite:×Ö(32Î»)Êı
-*Êä³ö£ºÎŞ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼švoid STMFLASH_Write(uint32_t WriteAddr,uint32_t *pBuffer,uint32_t NumToWrite)
+*åŠŸèƒ½ï¼šè¯»å–EEPROMæ•°ç»„å†™å…¥æ“ä½œ
+*è¾“å…¥ï¼šWriteAddr:èµ·å§‹åœ°å€
+			 pBuffer:æ•°æ®æŒ‡é’ˆ
+			 NumToWrite:å­—(32ä½)æ•°
+*è¾“å‡ºï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 **********************************************************************************************/
 void STMFLASH_Write(uint32_t WriteAddr,uint32_t *pBuffer,uint32_t NumToWrite)
 {
-    HAL_FLASH_Unlock();//Ëø×¡FLASH
-    HAL_FLASHEx_DATAEEPROM_Unlock(); //½âËøFLASH
-    //²Á³ıFLASH
-    FLASH_EraseInitTypeDef FLASH_EraseTypeDef;//³õÊ¼»¯FLASH_EraseInitTypeDef
+    HAL_FLASH_Unlock();//é”ä½FLASH
+    HAL_FLASHEx_DATAEEPROM_Unlock(); //è§£é”FLASH
+    //æ“¦é™¤FLASH
+    FLASH_EraseInitTypeDef FLASH_EraseTypeDef;//åˆå§‹åŒ–FLASH_EraseInitTypeDef
     FLASH_EraseTypeDef.TypeErase = FLASH_TYPEERASE_PAGES;
     FLASH_EraseTypeDef.PageAddress = WriteAddr;
     FLASH_EraseTypeDef.NbPages = 1;
-    uint32_t PageError = 0;//ÉèÖÃPageError
-    HAL_FLASHEx_Erase(&FLASH_EraseTypeDef, &PageError);//µ÷ÓÃ²Á³ıº¯Êı
+    uint32_t PageError = 0;//è®¾ç½®PageError
+    HAL_FLASHEx_Erase(&FLASH_EraseTypeDef, &PageError);//è°ƒç”¨æ“¦é™¤å‡½æ•°
     uint32_t i;
     for(i=0; i<NumToWrite; i++)
     {
         HAL_FLASHEx_DATAEEPROM_Program(TYPEPROGRAM_WORD, WriteAddr, pBuffer[i]);//FLASH_ProgramHalfWord(WriteAddr,pBuffer[i]);
-        WriteAddr+=4;//µØÖ·Ôö¼Ó4.
+        WriteAddr+=4;//åœ°å€å¢åŠ 4.
     }
-    HAL_FLASHEx_DATAEEPROM_Lock();//Ëø×¡FLASH
-    HAL_FLASH_Lock();//Ëø×¡FLASH
+    HAL_FLASHEx_DATAEEPROM_Lock();//é”ä½FLASH
+    HAL_FLASH_Lock();//é”ä½FLASH
 }
 
 /**********************************************************************************************
-*º¯Êı£ºvoid WriteFlashTest(uint32_t Addr,uint32_t WriteFlashData)
-*¹¦ÄÜ£º¶ÁÈ¡EEPROMÊı×éĞ´Èë²Ù×÷
-*ÊäÈë£ºWriteAddr:ÆğÊ¼µØÖ·
-			 WriteFlashData:Êı¾İ
-*Êä³ö£ºÎŞ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼švoid WriteFlashTest(uint32_t Addr,uint32_t WriteFlashData)
+*åŠŸèƒ½ï¼šè¯»å–EEPROMæ•°ç»„å†™å…¥æ“ä½œ
+*è¾“å…¥ï¼šWriteAddr:èµ·å§‹åœ°å€
+			 WriteFlashData:æ•°æ®
+*è¾“å‡ºï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 **********************************************************************************************/
 void WriteFlashTest(uint32_t Addr,uint32_t WriteFlashData)
 {
-    HAL_FLASH_Unlock();//Ëø×¡FLASH
-    HAL_FLASHEx_DATAEEPROM_Unlock();//½âËøFLASH
-    //²Á³ıFLASH
-    FLASH_EraseInitTypeDef FLASH_EraseTypeDef;//³õÊ¼»¯FLASH_EraseInitTypeDef
+    HAL_FLASH_Unlock();//é”ä½FLASH
+    HAL_FLASHEx_DATAEEPROM_Unlock();//è§£é”FLASH
+    //æ“¦é™¤FLASH
+    FLASH_EraseInitTypeDef FLASH_EraseTypeDef;//åˆå§‹åŒ–FLASH_EraseInitTypeDef
     FLASH_EraseTypeDef.TypeErase = FLASH_TYPEERASE_PAGES;
     FLASH_EraseTypeDef.PageAddress = Addr;
     FLASH_EraseTypeDef.NbPages = 1;
-    uint32_t PageError = 0;//ÉèÖÃPageError
-    HAL_FLASHEx_Erase(&FLASH_EraseTypeDef, &PageError);//µ÷ÓÃ²Á³ıº¯Êı
-    HAL_FLASHEx_DATAEEPROM_Program(TYPEPROGRAM_WORD, Addr, WriteFlashData);//¶ÔFLASHÉÕĞ´
-    HAL_FLASHEx_DATAEEPROM_Lock();//Ëø×¡FLASH
-    HAL_FLASH_Lock();//Ëø×¡FLASH
+    uint32_t PageError = 0;//è®¾ç½®PageError
+    HAL_FLASHEx_Erase(&FLASH_EraseTypeDef, &PageError);//è°ƒç”¨æ“¦é™¤å‡½æ•°
+    HAL_FLASHEx_DATAEEPROM_Program(TYPEPROGRAM_WORD, Addr, WriteFlashData);//å¯¹FLASHçƒ§å†™
+    HAL_FLASHEx_DATAEEPROM_Lock();//é”ä½FLASH
+    HAL_FLASH_Lock();//é”ä½FLASH
 }
 
-//´ÓÖ¸¶¨µØÖ·¿ªÊ¼¶Á³öÖ¸¶¨³¤¶ÈµÄÊı¾İ
-//ReadAddr:ÆğÊ¼µØÖ·
-//pBuffer:Êı¾İÖ¸Õë
-//NumToWrite:×Ö(32Î»)Êı
+//ä»æŒ‡å®šåœ°å€å¼€å§‹è¯»å‡ºæŒ‡å®šé•¿åº¦çš„æ•°æ®
+//ReadAddr:èµ·å§‹åœ°å€
+//pBuffer:æ•°æ®æŒ‡é’ˆ
+//NumToWrite:å­—(32ä½)æ•°
 void STMFLASH_Read(uint32_t ReadAddr,uint32_t *PBuffer,uint32_t NumToRead)
 {
     uint32_t i;
     for(i=0; i<NumToRead; i++)
     {
-        PBuffer[i]=STMFLASH_ReadWord(ReadAddr);//¶ÁÈ¡4¸ö×Ö½Ú.
-        ReadAddr+=4;//Æ«ÒÆ4¸ö×Ö½Ú.
+        PBuffer[i]=STMFLASH_ReadWord(ReadAddr);//è¯»å–4ä¸ªå­—èŠ‚.
+        ReadAddr+=4;//åç§»4ä¸ªå­—èŠ‚.
     }
 }
 
 /**********************************************************************************************
-*º¯Êı£ºuint32_t PrintFlashTest(uint32_t FLASH_ADDR)
-*¹¦ÄÜ£º¶ÁÈ¡Ö¸¶¨µØÖ·µÄ×Ö(32Î»Êı¾İ)
-*ÊäÈë£ºfaddr:¶ÁµØÖ·(´ËµØÖ·±ØĞëÎª2µÄ±¶Êı!!)
-*Êä³ö£º¶ÔÓ¦Êı¾İ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼šuint32_t PrintFlashTest(uint32_t FLASH_ADDR)
+*åŠŸèƒ½ï¼šè¯»å–æŒ‡å®šåœ°å€çš„å­—(32ä½æ•°æ®)
+*è¾“å…¥ï¼šfaddr:è¯»åœ°å€(æ­¤åœ°å€å¿…é¡»ä¸º2çš„å€æ•°!!)
+*è¾“å‡ºï¼šå¯¹åº”æ•°æ®
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 **********************************************************************************************/
 uint32_t PrintFlashTest(uint32_t FLASH_ADDR)
 {

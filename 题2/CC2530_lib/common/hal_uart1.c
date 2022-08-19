@@ -80,12 +80,12 @@ uartCfg_t uart1Cfg;
 void halUart1Init(uint32 baud)
 {
     // UART Configuration
-    PERCFG |= HAL_UART1_PERCFG_BIT; // ÉèÖÃ UART1 I/O Î»ÖÃÔÚP1¿ÚÉÏ.
+    PERCFG |= HAL_UART1_PERCFG_BIT; // è®¾ç½® UART1 I/O ä½ç½®åœ¨P1å£ä¸Š.
 
-    P1SEL |= U1RX_TX;              // Ê¹ÄÜ UART1 µÄTx£¨P1.6£©ºÍRx £¨P1.7£©Íâ²¿Éè±¸¹¦ÄÜÒı½Å.
+    P1SEL |= U1RX_TX;              // ä½¿èƒ½ UART1 çš„Txï¼ˆP1.6ï¼‰å’ŒRx ï¼ˆP1.7ï¼‰å¤–éƒ¨è®¾å¤‡åŠŸèƒ½å¼•è„š.
    // ADCCFG &= ~U0RX_TX;          // Make sure ADC doesnt use this.
-    U1CSR = CSR_MODE;              // UART Ä£Ê½.
-    U1UCR = UCR_FLUSH;             // Çå³ıµ¥Ôª.
+    U1CSR = CSR_MODE;              // UART æ¨¡å¼.
+    U1UCR = UCR_FLUSH;             // æ¸…é™¤å•å…ƒ.
 
     // Only supporting subset of baudrate for code size - other is possible.
     // 38400
@@ -123,10 +123,10 @@ void halUart1Init(uint32 baud)
     }
 
     // 8 bits/char; no parity; 1 stop bit; stop bit hi.
-    U1UCR = UCR_STOP;  //Í£Ö¹Î»Îª¸ßµçÆ½£¨1£©
-    U1CSR |= CSR_RE;   //UART1 ½ÓÊÕÆ÷Ê¹ÄÜ
-    URX1IE = 1;        //UART1 ½ÓÊÕÖĞ¶ÏÊ¹ÄÜ
-    U1DBUF = 0;        //Êı¾İ»º³åÆ÷Çå0
+    U1UCR = UCR_STOP;  //åœæ­¢ä½ä¸ºé«˜ç”µå¹³ï¼ˆ1ï¼‰
+    U1CSR |= CSR_RE;   //UART1 æ¥æ”¶å™¨ä½¿èƒ½
+    URX1IE = 1;        //UART1 æ¥æ”¶ä¸­æ–­ä½¿èƒ½
+    U1DBUF = 0;        //æ•°æ®ç¼“å†²å™¨æ¸…0
 
     uart1Cfg.rxHead = 0;
     uart1Cfg.rxTail = 0;

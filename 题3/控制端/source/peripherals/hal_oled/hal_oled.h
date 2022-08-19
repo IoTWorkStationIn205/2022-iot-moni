@@ -13,9 +13,9 @@
 #include "user_define.h"
 
 
-//OLEDÄ£Ê½ÉèÖÃ
-//0:4Ïß´®ĞĞÄ£Ê½
-//1:²¢ĞĞ8080Ä£Ê½
+//OLEDæ¨¡å¼è®¾ç½®
+//0:4çº¿ä¸²è¡Œæ¨¡å¼
+//1:å¹¶è¡Œ8080æ¨¡å¼
 #define OLED_MODE 0
 
 #define SIZE 16
@@ -26,7 +26,7 @@
 #define	Brightness	0xFF 
 #define X_WIDTH 	128
 #define Y_WIDTH 	64	    						  
-//-----------------OLED¶Ë¿Ú¶¨Òå----------------  
+//-----------------OLEDç«¯å£å®šä¹‰----------------  
 
 #define OLED_CS 		PB_12
 #if (USE_OLED_RST == true)
@@ -36,7 +36,7 @@
 #define OLED_SCLK 	PB_13
 #define OLED_SDIN 	PB_15
 
-//Íâ²¿±äÁ¿ÉùÃ÷
+//å¤–éƒ¨å˜é‡å£°æ˜
 extern Gpio_t OLED_CS_PIN;
 #if (USE_OLED_RST == true)
 extern Gpio_t OLED_RST_PIN;
@@ -63,11 +63,11 @@ extern Gpio_t OLED_SDIN_PIN;
 #define OLED_SDIN_Clr() GpioWrite( &OLED_SDIN_PIN, 0 )//DIN
 #define OLED_SDIN_Set() GpioWrite( &OLED_SDIN_PIN, 1 )
  		     
-#define OLED_CMD  0	//Ğ´ÃüÁî
-#define OLED_DATA 1	//Ğ´Êı¾İ
+#define OLED_CMD  0	//å†™å‘½ä»¤
+#define OLED_DATA 1	//å†™æ•°æ®
 
 
-//OLED¿ØÖÆÓÃº¯Êı
+//OLEDæ§åˆ¶ç”¨å‡½æ•°
 void OLED_WR_Byte(uint8_t dat,uint8_t cmd);	    
 void OLED_Display_On(void);
 void OLED_Display_Off(void);	   							   		    

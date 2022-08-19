@@ -173,7 +173,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   */
 static void Error_Handler(void)
 {
-	printf("定时器初始化失败！\r\n");
+	printf("瀹氭椂鍣ㄥ垵濮嬪寲澶辫触锛乗r\n");
 }
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -2,14 +2,14 @@
 #include "misc.h"
 
 /*******************************************************************
-*º¯Êý£ºuint8_t CHK(uint8_t *buf, uint8_t len)
-*¹¦ÄÜ£º¼ÆËãÀÛ¼ÓºÍ
-*ÊäÈë£ºuint8_t *buf £ºÐèÒªÀÛ¼ÓµÄÊý
-			 uint8_t len £ºÀÛ¼ÓÊýµÄ¸öÊý
-*·µ»Ø£ºÀÛ¼ÓºÍ
-*ÌØÊâËµÃ÷£º
+*å‡½æ•°ï¼šuint8_t CHK(uint8_t *buf, uint8_t len)
+*åŠŸèƒ½ï¼šè®¡ç®—ç´¯åŠ å’Œ
+*è¾“å…¥ï¼šuint8_t *buf ï¼šéœ€è¦ç´¯åŠ çš„æ•°
+			 uint8_t len ï¼šç´¯åŠ æ•°çš„ä¸ªæ•°
+*è¿”å›žï¼šç´¯åŠ å’Œ
+*ç‰¹æ®Šè¯´æ˜Žï¼š
 *******************************************************************/
-uint8_t CHK(uint8_t *buf, uint8_t len) //Ð£ÑéÂë
+uint8_t CHK(uint8_t *buf, uint8_t len) //æ ¡éªŒç 
 {
     uint8_t  RX_CHX=0;
 
@@ -36,16 +36,16 @@ uint32_t getCRC(uint8_t *buf, uint8_t len) {
         }
     }
 		
-    //¸ßµÍÎ»»¥»»£¬Êä³ö·ûºÏÏà¹Ø¹¤¾ß¶ÔModbus CRC16µÄÔËËã
+    //é«˜ä½Žä½äº’æ¢ï¼Œè¾“å‡ºç¬¦åˆç›¸å…³å·¥å…·å¯¹Modbus CRC16çš„è¿ç®—
     return ((crc & 0xff00) >> 8) | ((crc & 0x00ff) << 8);
 }
 
 /*******************************************************************
-*º¯Êý£ºvoid Uint16ToByteArray_BigEnd(uint16_t value, uint8_t *ret)
-*¹¦ÄÜ£ºbyteÊý×é×ªuint32ÕûÐÍ
-*ÊäÈë£ºuint8_t *buf £º¶þ×Ö½ÚbyteÊý×é
-*·µ»Ø£ºuint16_tÐÍÕû
-*ÌØÊâËµÃ÷£º
+*å‡½æ•°ï¼švoid Uint16ToByteArray_BigEnd(uint16_t value, uint8_t *ret)
+*åŠŸèƒ½ï¼šbyteæ•°ç»„è½¬uint32æ•´åž‹
+*è¾“å…¥ï¼šuint8_t *buf ï¼šäºŒå­—èŠ‚byteæ•°ç»„
+*è¿”å›žï¼šuint16_tåž‹æ•´
+*ç‰¹æ®Šè¯´æ˜Žï¼š
 *******************************************************************/
 void Uint16ToByteArray_BigEnd(uint16_t value, uint8_t *ret)
 {
@@ -54,11 +54,11 @@ void Uint16ToByteArray_BigEnd(uint16_t value, uint8_t *ret)
 }
 
 /*******************************************************************
-*º¯Êý£ºuint16_t ByteArray2Uint16_BigEnd(uint8_t *buf)
-*¹¦ÄÜ£ºbyteÊý×é×ªuint32ÕûÐÍ
-*ÊäÈë£ºuint8_t *buf £º¶þ×Ö½ÚbyteÊý×é
-*·µ»Ø£ºuint16_tÐÍÕû
-*ÌØÊâËµÃ÷£º
+*å‡½æ•°ï¼šuint16_t ByteArray2Uint16_BigEnd(uint8_t *buf)
+*åŠŸèƒ½ï¼šbyteæ•°ç»„è½¬uint32æ•´åž‹
+*è¾“å…¥ï¼šuint8_t *buf ï¼šäºŒå­—èŠ‚byteæ•°ç»„
+*è¿”å›žï¼šuint16_tåž‹æ•´
+*ç‰¹æ®Šè¯´æ˜Žï¼š
 *******************************************************************/
 uint16_t ByteArray2Uint16_BigEnd(uint8_t *buf)
 {
@@ -71,11 +71,11 @@ uint16_t ByteArray2Uint16_BigEnd(uint8_t *buf)
 }
 
 /*******************************************************************
-*º¯Êý£ºuint32_t ByteArray2Uint32_BigEnd(uint8_t *buf)
-*¹¦ÄÜ£ºbyteÊý×é×ªuint32ÕûÐÍ
-*ÊäÈë£ºuint8_t *buf £ºËÄ×Ö½ÚbyteÊý×é
-*·µ»Ø£ºuint32_tÐÍÕû
-*ÌØÊâËµÃ÷£º
+*å‡½æ•°ï¼šuint32_t ByteArray2Uint32_BigEnd(uint8_t *buf)
+*åŠŸèƒ½ï¼šbyteæ•°ç»„è½¬uint32æ•´åž‹
+*è¾“å…¥ï¼šuint8_t *buf ï¼šå››å­—èŠ‚byteæ•°ç»„
+*è¿”å›žï¼šuint32_tåž‹æ•´
+*ç‰¹æ®Šè¯´æ˜Žï¼š
 *******************************************************************/
 uint32_t ByteArray2Uint32_BigEnd(uint8_t *buf)
 {

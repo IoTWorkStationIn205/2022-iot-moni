@@ -26,7 +26,7 @@
  *
  * \author    Gregory Cristian ( Semtech )
  *
- * \author    Daniel Jäckle ( STACKFORCE )
+ * \author    Daniel JÃ¤ckle ( STACKFORCE )
  *
  * \defgroup  LORAMAC LoRa MAC layer implementation
  *            This module specifies the API implementation of the LoRaMAC layer.

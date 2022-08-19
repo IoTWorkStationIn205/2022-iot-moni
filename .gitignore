@@ -15,8 +15,6 @@
 *.dep
 *.iex
 *.i
-*.bin
-*.hex
 
 #Keil Project screen layout file
 *.uvguix.*

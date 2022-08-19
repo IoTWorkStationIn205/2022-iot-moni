@@ -11,6 +11,6 @@ void Time2Handler(){
 }
 
 void Time3Handler(){
-	Time3Call();
+	Time3Call()
 }
 

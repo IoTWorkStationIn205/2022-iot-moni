@@ -3,7 +3,7 @@
 //=============================================================================
 // Project   :  SHT3x Sample Code (V1.1)
 // File      :  i2c_hal.c (V1.1)
-// Brief     :  I2CÇý¶¯³ÌÐò
+// Brief     :  I2Cé©±åŠ¨ç¨‹åº
 //=============================================================================
 
 //-- Includes -----------------------------------------------------------------
@@ -12,7 +12,7 @@
 
 //-- Defines ------------------------------------------------------------------
 /*
-I2C×ÜÏß
+I2Cæ€»çº¿
 p1.5-scl
 p1.6-sda
 */
@@ -31,25 +31,25 @@ p1.6-sda
 #define I2C_IO_READ(port, pin)            (P##port## & BM(pin))
 
 #define I2C_SCL_DIR_OUT()                 I2C_IO_DIR_OUTPUT(1, 6)
-#define I2C_SCL_HIGH()                    I2C_IO_WRITE(1, 6, 1)// set SCL to open-drain ÖÃ¸ßµçÆ½
-#define I2C_SCL_LOW()                     I2C_IO_WRITE(1, 6, 0)// set SCL to low ÖÃµÍµçÆ½
+#define I2C_SCL_HIGH()                    I2C_IO_WRITE(1, 6, 1)// set SCL to open-drain ç½®é«˜ç”µå¹³
+#define I2C_SCL_LOW()                     I2C_IO_WRITE(1, 6, 0)// set SCL to low ç½®ä½Žç”µå¹³
 #define I2C_SCL_DIR_IN()                  I2C_IO_DIR_INPUT(1, 6, 2)
 #define I2C_SCL_READ()                    I2C_IO_READ(1, 6)     // read SCL
 
 #define I2C_SDA_DIR_OUT()                 I2C_IO_DIR_OUTPUT(1, 5)
-#define I2C_SDA_HIGH()                    I2C_IO_WRITE(1, 5, 1)// set SDA to open-drain ÖÃ¸ßµçÆ½
-#define I2C_SDA_LOW()                     I2C_IO_WRITE(1, 5, 0)// set SDA to low ÖÃµÍµçÆ½
+#define I2C_SDA_HIGH()                    I2C_IO_WRITE(1, 5, 1)// set SDA to open-drain ç½®é«˜ç”µå¹³
+#define I2C_SDA_LOW()                     I2C_IO_WRITE(1, 5, 0)// set SDA to low ç½®ä½Žç”µå¹³
 #define I2C_SDA_DIR_IN()                  I2C_IO_DIR_INPUT(1, 5, 2)
 #define I2C_SDA_READ()                    I2C_IO_READ(1, 5) // read SDA
 
-#define I2C_INPUT  1//ÖÃ³ÉÊäÈë
-#define I2C_OUTPUT 0//ÖÃ³ÉÊä³ö
+#define I2C_INPUT  1//ç½®æˆè¾“å…¥
+#define I2C_OUTPUT 0//ç½®æˆè¾“å‡º
 
 //-- Static function prototypes -----------------------------------------------
 static etError I2c_WaitWhileClockStreching(uint8 timeout);
 
 //-----------------------------------------------------------------------------
-void I2c_sdaInOutInit(uint8 InOut)                      /* -- ¸ù¾ÝÓ²¼þÆ½Ì¨½øÐÐÐÞ¸Ä£¬³õÊ¼»¯SDAÒý½Å£¬InOut-1ÊäÈë£¬InOut-0Êä³ö -- */
+void I2c_sdaInOutInit(uint8 InOut)                      /* -- æ ¹æ®ç¡¬ä»¶å¹³å°è¿›è¡Œä¿®æ”¹ï¼Œåˆå§‹åŒ–SDAå¼•è„šï¼ŒInOut-1è¾“å…¥ï¼ŒInOut-0è¾“å‡º -- */
 {
   /*Configure GPIO pins*/
   if(InOut != I2C_INPUT)
@@ -62,7 +62,7 @@ void I2c_sdaInOutInit(uint8 InOut)                      /* -- ¸ù¾ÝÓ²¼þÆ½Ì¨½øÐÐÐÞ
   }
 }
 
-void I2c_SclInOutInit(uint8 InOut)                      /* -- ¸ù¾ÝÓ²¼þÆ½Ì¨½øÐÐÐÞ¸Ä£¬³õÊ¼»¯SCLÒý½Å£¬InOut-1ÊäÈë£¬InOut-0Êä³ö -- */
+void I2c_SclInOutInit(uint8 InOut)                      /* -- æ ¹æ®ç¡¬ä»¶å¹³å°è¿›è¡Œä¿®æ”¹ï¼Œåˆå§‹åŒ–SCLå¼•è„šï¼ŒInOut-1è¾“å…¥ï¼ŒInOut-0è¾“å‡º -- */
 {
   /*Configure GPIO pins*/
   if(InOut != I2C_INPUT)
@@ -78,7 +78,7 @@ void I2c_SclInOutInit(uint8 InOut)                      /* -- ¸ù¾ÝÓ²¼þÆ½Ì¨½øÐÐÐÞ
 void I2c_Init(void)                      /* -- adapt the init for your uC -- */
 {
 #if 0
-    //³õÊ¼»¯I2C×ÜÏßIO¿ÚSDA¡¢SCL
+    //åˆå§‹åŒ–I2Cæ€»çº¿IOå£SDAã€SCL
     ;
     ;
     I2C_SDA_HIGH();                  // I2C-bus idle mode SDA released
@@ -87,7 +87,7 @@ void I2c_Init(void)                      /* -- adapt the init for your uC -- */
     // SDA
     // SCL
     // set open-drain output for SDA and SCL 
-    //SDA¡¢SCLÉèÖÃÎªÂ©¼«¿ªÂ·
+    //SDAã€SCLè®¾ç½®ä¸ºæ¼æžå¼€è·¯
     ;
     ;
 #else
@@ -142,11 +142,11 @@ etError I2c_WriteByte(uint8 txByte)
     I2C_SDA_HIGH();                           // release SDA-line
     I2C_SCL_HIGH();                           // clk #9 for ack
     DelayMicroSeconds(1);                 // data set-up time (t_SU;DAT)
-    I2c_sdaInOutInit(I2C_INPUT);          //SDAÖÃÎªÊäÈë
+    I2c_sdaInOutInit(I2C_INPUT);          //SDAç½®ä¸ºè¾“å…¥
     if(I2C_SDA_READ()) error = ACK_ERROR;       // check ack from i2c slave
     I2C_SCL_LOW();
     DelayMicroSeconds(20);                // wait to see byte package on scope
-    I2c_sdaInOutInit(I2C_OUTPUT);         //SDAÖÃÎªÊä³ö
+    I2c_sdaInOutInit(I2C_OUTPUT);         //SDAç½®ä¸ºè¾“å‡º
     return error;                         // return error code
 }
 
@@ -157,7 +157,7 @@ etError I2c_ReadByte(uint8 *rxByte, etI2cAck ack, uint8 timeout)
     uint8 mask;
     *rxByte = 0x00;
     I2C_SDA_HIGH();                            // release SDA-line
-    I2c_sdaInOutInit(I2C_INPUT);           //SDAÖÃÎªÊäÈë
+    I2c_sdaInOutInit(I2C_INPUT);           //SDAç½®ä¸ºè¾“å…¥
     for(mask = 0x80; mask > 0; mask >>= 1) // shift bit for masking (8 times)
     {
         I2C_SCL_HIGH();                          // start clock on SCL-line
@@ -168,7 +168,7 @@ etError I2c_ReadByte(uint8 *rxByte, etI2cAck ack, uint8 timeout)
         I2C_SCL_LOW();
         DelayMicroSeconds(1);                // data hold time(t_HD;DAT)
     }
-    I2c_sdaInOutInit(I2C_OUTPUT);          //SDAÖÃÎªÊä³ö
+    I2c_sdaInOutInit(I2C_OUTPUT);          //SDAç½®ä¸ºè¾“å‡º
     if(ack == ACK) I2C_SDA_LOW();              // send acknowledge if necessary
     else           I2C_SDA_HIGH();
     DelayMicroSeconds(1);                  // data set-up time (t_SU;DAT)
@@ -210,12 +210,12 @@ void DelayMicroSeconds(uint32 nbrOfUs)   /* -- adapt this delay for your uC -- *
 static etError I2c_WaitWhileClockStreching(uint8 timeout)
 {
     etError error = NO_ERROR;
-    I2c_SclInOutInit(I2C_INPUT);          //SCLÖÃÎªÊäÈë
+    I2c_SclInOutInit(I2C_INPUT);          //SCLç½®ä¸ºè¾“å…¥
     while(I2C_SCL_READ() == 0)
     {
         if(timeout-- == 0) return TIMEOUT_ERROR;
         DelayMicroSeconds(1000);
     }
-    I2c_SclInOutInit(I2C_OUTPUT);         //SCLÖÃÎªÊä³ö
+    I2c_SclInOutInit(I2C_OUTPUT);         //SCLç½®ä¸ºè¾“å‡º
     return error;
 }

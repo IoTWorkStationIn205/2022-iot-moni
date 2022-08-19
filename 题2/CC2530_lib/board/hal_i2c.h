@@ -95,12 +95,12 @@ void I2c_StopCondition(void);// Writes a stop condition on I2C-Bus.
 etError I2c_WriteByte(uint8 txByte);// Writes a byte to I2C-Bus and checks acknowledge.
 
 //=============================================================================
-etError I2c_ReadByte(uint8 *rxByte, etI2cAck ack, uint8 timeout);//¶Á1¸ö×Ö½Ú
+etError I2c_ReadByte(uint8 *rxByte, etI2cAck ack, uint8 timeout);//è¯»1ä¸ªå­—èŠ‚
 
 //=============================================================================
-etError I2c_GeneralCallReset(void);//Éú³É¸´Î»ĞÅºÅ
+etError I2c_GeneralCallReset(void);//ç”Ÿæˆå¤ä½ä¿¡å·
 
 //-----------------------------------------------------------------------------
-void DelayMicroSeconds(uint32 nbrOfUs);//ÑÓÊ±nbrOfUsÎ¢Ãë
+void DelayMicroSeconds(uint32 nbrOfUs);//å»¶æ—¶nbrOfUså¾®ç§’
 
 #endif

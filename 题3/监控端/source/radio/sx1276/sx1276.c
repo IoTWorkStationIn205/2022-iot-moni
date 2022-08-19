@@ -1181,7 +1181,7 @@ void SX1276Reset( void )
 }
 #else
 {
-    //由于没有复位引脚，进行LORA/FSK切换的目的是为了进行相位校准
+    //鐢变簬娌℃湁澶嶄綅寮曡剼锛岃繘琛孡ORA/FSK鍒囨崲鐨勭洰鐨勬槸涓轰簡杩涜鐩镐綅鏍″噯
     RadioModems_t modem = MODEM_LORA;
     modem = (RadioModems_t)( SX1276Read( REG_OPMODE ) & RFLR_OPMODE_LONGRANGEMODE_ON );
     if( modem != MODEM_FSK )

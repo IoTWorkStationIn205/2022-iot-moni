@@ -11,14 +11,14 @@ void Timer4_Init(void)
     // Set prescaler divider value to 128 (32M/128 = 250KHZ)
     T4CTL |= 0xE0;
     T4CTL &= ~(0x10); // Stop timer
-    T4CTL &= ~(0x08); // ½ûÖ¹Òç³öÖĞ¶Ï
-    T4CTL |= 0x04;    //¼ÆÊıÆ÷ÇåÁã
+    T4CTL &= ~(0x08); // ç¦æ­¢æº¢å‡ºä¸­æ–­
+    T4CTL |= 0x04;    //è®¡æ•°å™¨æ¸…é›¶
     T4IE = 0;         // Disable interrupt    
 }
 
 void Timer4_On(void)
 {    
-    T4CTL |= 0x08; //Ê¹ÄÜÒç³öÖĞ¶Ï
+    T4CTL |= 0x08; //ä½¿èƒ½æº¢å‡ºä¸­æ–­
     T4CTL &= ~(0x03);//0x00-0xFF
     T4CTL |= 0x10; // Start timer
     T4IE = 1; // Enable interrupt
@@ -27,7 +27,7 @@ void Timer4_On(void)
 
 void Timer4_Off(void)
 {
-    T4CTL &= ~(0x08); // ½ûÖ¹Òç³öÖĞ¶Ï
+    T4CTL &= ~(0x08); // ç¦æ­¢æº¢å‡ºä¸­æ–­
     T4CTL &= ~(0x10); // Stop timer
     T4IE = 0; // Disable interrupt
 }

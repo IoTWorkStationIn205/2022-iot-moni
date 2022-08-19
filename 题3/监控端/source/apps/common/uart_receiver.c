@@ -5,11 +5,11 @@
 void uart1Call(void);
 
 void uartReceiver() {
-    if(F_USART1_RX_RECEIVING)//ÕýÔÚ½ÓÊÕ´®¿ÚÊý¾Ý
+    if(F_USART1_RX_RECEIVING)//æ­£åœ¨æŽ¥æ”¶ä¸²å£æ•°æ®
     {
-        USART1_RX_TIMEOUT_COUNT++;//´®¿Ú³¬Ê±¼ÆÊý
-        if(USART1_RX_TIMEOUT_COUNT>USART1_RX_TIMEOUT)//Êý¾Ý½ÓÊÕ¼ä¸ô³¬¹ý3ms
-        {   //´®¿Ú½ÓÊÕÍê³É»ò½áÊø
+        USART1_RX_TIMEOUT_COUNT++;//ä¸²å£è¶…æ—¶è®¡æ•°
+        if(USART1_RX_TIMEOUT_COUNT>USART1_RX_TIMEOUT)//æ•°æ®æŽ¥æ”¶é—´éš”è¶…è¿‡3ms
+        {   //ä¸²å£æŽ¥æ”¶å®Œæˆæˆ–ç»“æŸ
             F_USART1_RX_RECEIVING=false;
             USART1_RX_TIMEOUT_COUNT=0;
             F_USART1_RX_FINISH=true;

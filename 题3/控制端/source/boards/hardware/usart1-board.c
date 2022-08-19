@@ -10,10 +10,10 @@
 
 #include "usart1-board.h"
 
-uint8_t USART1_RX_BUF[USART1_REC_LEN];	//½ÓÊÕ»º³å,×î´óUSART1_REC_LEN¸ö×Ö½Ú
-uint16_t USART1_RX_COUNT=0;	//½ÓÊÕµ½µÄÓĞĞ§×Ö½ÚÊıÄ¿£¬×î´óUSART1_REC_LEN×Ö½Ú
-bool F_USART1_RX_FINISH=false;//½ÓÊÕ×´Ì¬±ê¼Ç,1:usart1½ÓÊÕÍê³É£¬0£ºusart1½ÓÊÕÎ´Íê³É
-bool F_USART1_RX_RECEIVING=false;//´®¿Ú½ÓÊÕÕıÔÚ½øĞĞÖĞ±ê¼Ç,1:½øĞĞÖĞ£¬0£ºÔİÍ£»ò½áÊø
+uint8_t USART1_RX_BUF[USART1_REC_LEN];	//æ¥æ”¶ç¼“å†²,æœ€å¤§USART1_REC_LENä¸ªå­—èŠ‚
+uint16_t USART1_RX_COUNT=0;	//æ¥æ”¶åˆ°çš„æœ‰æ•ˆå­—èŠ‚æ•°ç›®ï¼Œæœ€å¤§USART1_REC_LENå­—èŠ‚
+bool F_USART1_RX_FINISH=false;//æ¥æ”¶çŠ¶æ€æ ‡è®°,1:usart1æ¥æ”¶å®Œæˆï¼Œ0ï¼šusart1æ¥æ”¶æœªå®Œæˆ
+bool F_USART1_RX_RECEIVING=false;//ä¸²å£æ¥æ”¶æ­£åœ¨è¿›è¡Œä¸­æ ‡è®°,1:è¿›è¡Œä¸­ï¼Œ0ï¼šæš‚åœæˆ–ç»“æŸ
 uint8_t USART1_RX_TIMEOUT_COUNT=0;
 
 /*!
@@ -26,10 +26,10 @@ static TimerEvent_t Usart1Timer;
  */
 static void OnUsart1TimerEvent( void )
 {
-	//Usart1Êı¾İ½ÓÊÕ¼ä¸ô³¬¹ı3ms
+	//Usart1æ•°æ®æ¥æ”¶é—´éš”è¶…è¿‡3ms
     TimerStop( &Usart1Timer );
     //...
-	if(F_USART1_RX_RECEIVING)//ÕıÔÚ½ÓÊÕ´®¿ÚÊı¾İ
+	if(F_USART1_RX_RECEIVING)//æ­£åœ¨æ¥æ”¶ä¸²å£æ•°æ®
 	{
 		F_USART1_RX_RECEIVING=false;
 		F_USART1_RX_FINISH=true;
@@ -37,26 +37,26 @@ static void OnUsart1TimerEvent( void )
 }
 
 /******************************************************************************
-*º¯ÊıÃû³Æ£ºvoid USART1_Init(uint32_t bound)
-*¹¦ÄÜ£º³õÊ¼»¯´®¿Ú1
-*ÊäÈë£ºuint32_t bound£¬²¨ÌØÂÊ
-*Êä³ö£ºÎŞ
-*·µ»Ø£ºÎŞ
+*å‡½æ•°åç§°ï¼švoid USART1_Init(uint32_t bound)
+*åŠŸèƒ½ï¼šåˆå§‹åŒ–ä¸²å£1
+*è¾“å…¥ï¼šuint32_t boundï¼Œæ³¢ç‰¹ç‡
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šæ— 
 ******************************************************************************/
 void USART1_Init(uint32_t bound)
 {
-	//³õÊ¼»¯´®¿Ú1
+	//åˆå§‹åŒ–ä¸²å£1
 	UartInit( &Uart1, UART_1, UART_TX, UART_RX );	
 	UartConfig( &Uart1, RX_TX, bound, UART_8_BIT, UART_1_STOP_BIT, NO_PARITY, NO_FLOW_CTRL );// RX_TX
-	//³õÊ¼»¯½ÓÊÕ³¬Ê±¶¨Ê±Æ÷ÊÂ¼ş
+	//åˆå§‹åŒ–æ¥æ”¶è¶…æ—¶å®šæ—¶å™¨äº‹ä»¶
 	TimerInit( &Usart1Timer, OnUsart1TimerEvent );
 	TimerSetValue( &Usart1Timer, USART1_RX_TIMEOUT );
 }
 
 /******************************************************************************
-* º¯ÊıÃû³Æ£ºbool USART1_GetFlagStatus(uint16_t USART_FLAG)
-* ¹¦ÄÜ£ºChecks whether the specified USART flag is set or not.
-* ÊäÈë£ºuint16_t USART_FLAG£¬USART_FLAG: specifies the flag to check.
+* å‡½æ•°åç§°ï¼šbool USART1_GetFlagStatus(uint16_t USART_FLAG)
+* åŠŸèƒ½ï¼šChecks whether the specified USART flag is set or not.
+* è¾“å…¥ï¼šuint16_t USART_FLAGï¼ŒUSART_FLAG: specifies the flag to check.
 *   This parameter can be one of the following values:
 *     @arg USART_FLAG_LBD:  LIN Break detection flag
 *     @arg USART_FLAG_TXE:  Transmit data register empty flag
@@ -67,8 +67,8 @@ void USART1_Init(uint32_t bound)
 *     @arg USART_FLAG_NE:   Noise Error flag
 *     @arg USART_FLAG_FE:   Framing Error flag
 *     @arg USART_FLAG_PE:   Parity Error flag
-* Êä³ö£ºÎŞ
-* ·µ»Ø£º The new state of USART_FLAG (SET or RESET).
+* è¾“å‡ºï¼šæ— 
+* è¿”å›ï¼š The new state of USART_FLAG (SET or RESET).
 ******************************************************************************/
 FlagStatus USART1_GetFlagStatus(uint16_t USART_FLAG)
 {
@@ -86,16 +86,16 @@ FlagStatus USART1_GetFlagStatus(uint16_t USART_FLAG)
 }
 
 /******************************************************************************
-*º¯ÊıÃû³Æ£ºvoid USART1_SendData(uint16_t Data)
-*¹¦ÄÜ£º´®¿Ú1·¢ËÍÒ»¸ö×Ö½ÚÊı¾İ
-*ÊäÈë£ºuint16_t Data£¬´ı·¢ËÍµÄÊı¾İ
-*Êä³ö£ºÎŞ
-*·µ»Ø£ºÎŞ
+*å‡½æ•°åç§°ï¼švoid USART1_SendData(uint16_t Data)
+*åŠŸèƒ½ï¼šä¸²å£1å‘é€ä¸€ä¸ªå­—èŠ‚æ•°æ®
+*è¾“å…¥ï¼šuint16_t Dataï¼Œå¾…å‘é€çš„æ•°æ®
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šæ— 
 ******************************************************************************/
 void USART1_SendData(uint16_t Data)
 {
   /*
-  //µÈ´ı·¢ËÍÍê³É
+  //ç­‰å¾…å‘é€å®Œæˆ
   while(USART1_GetFlagStatus(USART_FLAG_TC) != SET);
   */
   //Transmit Data
@@ -103,11 +103,11 @@ void USART1_SendData(uint16_t Data)
 }
 
 /******************************************************************************
-*º¯ÊıÃû³Æ£ºuint16_t USART1_ReceiveData(void)
-*¹¦ÄÜ£º´®¿Ú1½ÓÊÕÒ»¸ö×Ö½ÚÊı¾İ
-*ÊäÈë£ºÎŞ
-*Êä³ö£ºÎŞ
-*·µ»Ø£º·µ»Ø½ÓÊÕµ½µÄ´®¿ÚÊı¾İ
+*å‡½æ•°åç§°ï¼šuint16_t USART1_ReceiveData(void)
+*åŠŸèƒ½ï¼šä¸²å£1æ¥æ”¶ä¸€ä¸ªå­—èŠ‚æ•°æ®
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šè¿”å›æ¥æ”¶åˆ°çš„ä¸²å£æ•°æ®
 ******************************************************************************/
 uint16_t USART1_ReceiveData(void)
 {
@@ -116,53 +116,53 @@ uint16_t USART1_ReceiveData(void)
 }
 
 /******************************************************************************
-*º¯ÊıÃû³Æ£ºvoid USART1_SendStr(uint8_t *Data, uint8_t length)
-*¹¦ÄÜ£º´®¿Ú1·¢ËÍlength¸ö×Ö½Ú
-*ÊäÈë£ºuint8_t *Data-´ı·¢ËÍµÄÊı¾İ£¬ uint8_t length-´ı·¢ËÍµÄÊı¾İ³¤¶È
-*Êä³ö£ºÎŞ
-*·µ»Ø£ºÎŞ
+*å‡½æ•°åç§°ï¼švoid USART1_SendStr(uint8_t *Data, uint8_t length)
+*åŠŸèƒ½ï¼šä¸²å£1å‘é€lengthä¸ªå­—èŠ‚
+*è¾“å…¥ï¼šuint8_t *Data-å¾…å‘é€çš„æ•°æ®ï¼Œ uint8_t length-å¾…å‘é€çš„æ•°æ®é•¿åº¦
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šæ— 
 ******************************************************************************/
 void USART1_SendStr(uint8_t *Data, uint16_t length)
 {
 	while(length--)
 	{
-		//µÈ´ı·¢ËÍÍê³É
+		//ç­‰å¾…å‘é€å®Œæˆ
 		while(USART1_GetFlagStatus(USART_FLAG_TC) != SET);
 		USART1_SendData((uint16_t )(*Data));
-		//µÈ´ı·¢ËÍÍê³É
+		//ç­‰å¾…å‘é€å®Œæˆ
 		while(USART1_GetFlagStatus(USART_FLAG_TC) != SET);
 		Data++;
 	}
 }
 
 /******************************************************************************
-*º¯ÊıÃû³Æ£ºvoid USART1_ReceiveClr(void)
-*¹¦ÄÜ£º´®¿Ú1Ïà¹Ø¼Ä´æÆ÷ºÍ±êÖ¾Î»Çå¿Õ
-*ÊäÈë£ºÎŞ
-*Êä³ö£ºÎŞ
-*·µ»Ø£ºÎŞ
+*å‡½æ•°åç§°ï¼švoid USART1_ReceiveClr(void)
+*åŠŸèƒ½ï¼šä¸²å£1ç›¸å…³å¯„å­˜å™¨å’Œæ ‡å¿—ä½æ¸…ç©º
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šæ— 
 ******************************************************************************/
 void USART1_ReceiveClr(void)
 {
-	/*for(uint8_t i=0; i<USART1_REC_LEN; i++)//½ÓÊÕ»º³å,×î´óUSART2_REC_LEN¸ö×Ö½Ú
+	/*for(uint8_t i=0; i<USART1_REC_LEN; i++)//æ¥æ”¶ç¼“å†²,æœ€å¤§USART2_REC_LENä¸ªå­—èŠ‚
 	{
 		USART1_RX_BUF[i]=0x00;
 	}*/
-	USART1_RX_COUNT=0;	//½ÓÊÕµ½µÄÓĞĞ§×Ö½ÚÊıÄ¿£¬×î´óUSART1_REC_LEN×Ö½Ú
-	F_USART1_RX_FINISH=false;//½ÓÊÕ×´Ì¬±ê¼Ç,1:usart1½ÓÊÕÍê³É£¬0£ºusart1½ÓÊÕÎ´Íê³É
+	USART1_RX_COUNT=0;	//æ¥æ”¶åˆ°çš„æœ‰æ•ˆå­—èŠ‚æ•°ç›®ï¼Œæœ€å¤§USART1_REC_LENå­—èŠ‚
+	F_USART1_RX_FINISH=false;//æ¥æ”¶çŠ¶æ€æ ‡è®°,1:usart1æ¥æ”¶å®Œæˆï¼Œ0ï¼šusart1æ¥æ”¶æœªå®Œæˆ
 	memset(USART1_RX_BUF, 0, USART1_REC_LEN);
-	//F_USART1_RX_RECEIVING=false;//´®¿Ú½ÓÊÕÕıÔÚ½øĞĞÖĞ±ê¼Ç,1:½øĞĞÖĞ£¬0£ºÔİÍ£»ò½áÊø
+	//F_USART1_RX_RECEIVING=false;//ä¸²å£æ¥æ”¶æ­£åœ¨è¿›è¡Œä¸­æ ‡è®°,1:è¿›è¡Œä¸­ï¼Œ0ï¼šæš‚åœæˆ–ç»“æŸ
 }
 
 
 /**********************************************************************************************
-*º¯Êı£ºuint16_t USART1_ReadRxBuffer( uint8_t *payload)
-*¹¦ÄÜ£º¶ÁÈ¡USART1½ÓÊÕ»º´æĞÅÏ¢£¬°üÀ¨¶ÁÈ¡½ÓÊÕµ½µÄÊı¾İ³¤¶ÈºÍ»º´æÊı¾İ¡£
-*ÊäÈë£ºÎŞ
-*Êä³ö£ºuint8_t *payload, Ö¸Õë£¬Ö¸ÏòÒªÓÃÓÚ´æ·Å½ÓÊÕ»º´æµÄµØÖ·
-*·µ»Ø£º·µ»Ø½ÓÊÕµ½µÄÊı¾İ³¤¶È
-*ÌØÊâËµÃ÷£ºÃ¿µ÷ÓÃUSART1_ReadRxBuffer()º¯Êı£¬USART1_RX_COUNT»á±»ÖÃ0£¬F_USART1_RX_FINISH¸³ÖµÎªfalse£¬
-USART1_RX_BUF»º´æÇø»á±»Çå0¡£
+*å‡½æ•°ï¼šuint16_t USART1_ReadRxBuffer( uint8_t *payload)
+*åŠŸèƒ½ï¼šè¯»å–USART1æ¥æ”¶ç¼“å­˜ä¿¡æ¯ï¼ŒåŒ…æ‹¬è¯»å–æ¥æ”¶åˆ°çš„æ•°æ®é•¿åº¦å’Œç¼“å­˜æ•°æ®ã€‚
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šuint8_t *payload, æŒ‡é’ˆï¼ŒæŒ‡å‘è¦ç”¨äºå­˜æ”¾æ¥æ”¶ç¼“å­˜çš„åœ°å€
+*è¿”å›ï¼šè¿”å›æ¥æ”¶åˆ°çš„æ•°æ®é•¿åº¦
+*ç‰¹æ®Šè¯´æ˜ï¼šæ¯è°ƒç”¨USART1_ReadRxBuffer()å‡½æ•°ï¼ŒUSART1_RX_COUNTä¼šè¢«ç½®0ï¼ŒF_USART1_RX_FINISHèµ‹å€¼ä¸ºfalseï¼Œ
+USART1_RX_BUFç¼“å­˜åŒºä¼šè¢«æ¸…0ã€‚
 **********************************************************************************************/
 uint16_t USART1_ReadRxBuffer( uint8_t *payload)
 {
@@ -180,11 +180,11 @@ uint16_t USART1_ReadRxBuffer( uint8_t *payload)
 
 
 /******************************************************************************
-*º¯ÊıÃû³Æ£ºvoid USART1_Process(void)
-*¹¦ÄÜ£º´®¿Ú2½ø³Ì´¦Àí
-*ÊäÈë£ºÎŞ
-*Êä³ö£ºÎŞ
-*·µ»Ø£ºÎŞ
+*å‡½æ•°åç§°ï¼švoid USART1_Process(void)
+*åŠŸèƒ½ï¼šä¸²å£2è¿›ç¨‹å¤„ç†
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šæ— 
 ******************************************************************************/
 void USART1_Process(void)
 {
@@ -193,23 +193,23 @@ void USART1_Process(void)
 }
 
 /******************************************************************************
-*º¯ÊıÃû³Æ£ºvoid USART1_IRQHandler(void)
-*¹¦ÄÜ£º´®¿Ú1ÖĞ¶Ï·şÎñ³ÌĞò
-*ÊäÈë£ºÎŞ
-*Êä³ö£ºÎŞ
-*·µ»Ø£ºÎŞ
+*å‡½æ•°åç§°ï¼švoid USART1_IRQHandler(void)
+*åŠŸèƒ½ï¼šä¸²å£1ä¸­æ–­æœåŠ¡ç¨‹åº
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šæ— 
+*è¿”å›ï¼šæ— 
 ******************************************************************************/
 void USART1_IRQHandler(void)
 {
-	if(USART1_GetFlagStatus((uint16_t)USART_IT_RXNE) != RESET)  //½ÓÊÕµ½Êı¾İ
+	if(USART1_GetFlagStatus((uint16_t)USART_IT_RXNE) != RESET)  //æ¥æ”¶åˆ°æ•°æ®
 	{
-		USART1_RX_BUF[USART1_RX_COUNT] = (uint8_t)USART1_ReceiveData();	//¶ÁÈ¡½ÓÊÕµ½µÄÊı¾İ
+		USART1_RX_BUF[USART1_RX_COUNT] = (uint8_t)USART1_ReceiveData();	//è¯»å–æ¥æ”¶åˆ°çš„æ•°æ®
 		USART1_RX_COUNT++;
 		USART1_RX_TIMEOUT_COUNT=0;
-		F_USART1_RX_RECEIVING=true;//ÕıÔÚ½ÓÊÕ´®¿ÚÊı¾İ
-		if(USART1_RX_COUNT>=USART1_REC_LEN)//»º´æÇøÒç³ö
+		F_USART1_RX_RECEIVING=true;//æ­£åœ¨æ¥æ”¶ä¸²å£æ•°æ®
+		if(USART1_RX_COUNT>=USART1_REC_LEN)//ç¼“å­˜åŒºæº¢å‡º
 		{USART1_RX_COUNT = 0x0000;}
-		F_USART1_RX_RECEIVING=true;//ÕıÔÚ½ÓÊÕ´®¿ÚÊı¾İ
+		F_USART1_RX_RECEIVING=true;//æ­£åœ¨æ¥æ”¶ä¸²å£æ•°æ®
 	}
 }
 

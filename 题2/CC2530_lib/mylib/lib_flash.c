@@ -2,44 +2,44 @@
 
 
 /***************************************************************
-* ¹¦ÄÜ: ²Á³ıFLASHÖĞµÄµÚpageÒ³
+* åŠŸèƒ½: æ“¦é™¤FLASHä¸­çš„ç¬¬pageé¡µ
 ****************************************************************/
 void Flash_Erase(uint8 page)
 {
     FADDRH = page << 1;
-    FCTL |= 0x01;        //Æô¶¯Ò³Ãæ²Á³ı
-    while (FCTL & 0x80);  //µÈ´ı²Á³ıÍê³É
+    FCTL |= 0x01;        //å¯åŠ¨é¡µé¢æ“¦é™¤
+    while (FCTL & 0x80);  //ç­‰å¾…æ“¦é™¤å®Œæˆ
 }
 
 /***************************************************************
-* ¹¦ÄÜ: ½«bufÖĞµÄlength¸ö×Ö½ÚĞ´ÈëFLASHµÚpageÒ³offset¿ªÊ¼µÄÎ»ÖÃ 
+* åŠŸèƒ½: å°†bufä¸­çš„lengthä¸ªå­—èŠ‚å†™å…¥FLASHç¬¬pageé¡µoffsetå¼€å§‹çš„ä½ç½® 
 ****************************************************************/
-uint8 DmaDesc[8]={0,0,0x62,0x73,0,0,0x12,0x42};//¶¨ÒåDMAÃèÊö·û
+uint8 DmaDesc[8]={0,0,0x62,0x73,0,0,0x12,0x42};//å®šä¹‰DMAæè¿°ç¬¦
 void Flash_Write(uint8 page, uint16 offset, uint8 *buf, uint16 length)
 {
-    FADDRH = (page << 1)|((offset >> 10) & 1);  //¼ÆËãFLASHµØÖ·
+    FADDRH = (page << 1)|((offset >> 10) & 1);  //è®¡ç®—FLASHåœ°å€
     FADDRL = (offset >> 2) & 0xFF;
-    DmaDesc[0] = (uint16)buf >> 8;            //ÉèÖÃÊı¾İµØÖ·
+    DmaDesc[0] = (uint16)buf >> 8;            //è®¾ç½®æ•°æ®åœ°å€
     DmaDesc[1] = (uint16)buf & 0xFF; 
-    DmaDesc[4] = (length >> 8) & 0x1F;        //ÉèÖÃ×Ö½ÚÊı
+    DmaDesc[4] = (length >> 8) & 0x1F;        //è®¾ç½®å­—èŠ‚æ•°
     DmaDesc[5] = length & 0xFC; 
    
-    DMA0CFGH = (uint16)DmaDesc >> 8;    //ÉèÖÃDMAÍ¨µÀ0ÃèÊö·ûµØÖ·
+    DMA0CFGH = (uint16)DmaDesc >> 8;    //è®¾ç½®DMAé€šé“0æè¿°ç¬¦åœ°å€
     DMA0CFGL = (uint16)DmaDesc & 0xFF;
-    DMAIRQ = 0x01;                      //¼¤»îDMAÍ¨µÀ0
-    DMAARM = 0x01;                      //Ê¹DMAÍ¨µÀ0½øÈë¹¤×÷×´Ì¬
-    FCTL |=  0x02;                      //¿ªÊ¼DMAĞ´Èë²Ù×÷
-    while (FCTL & 0x80);                //µÈ´ıĞ´ÈëÍê³É
+    DMAIRQ = 0x01;                      //æ¿€æ´»DMAé€šé“0
+    DMAARM = 0x01;                      //ä½¿DMAé€šé“0è¿›å…¥å·¥ä½œçŠ¶æ€
+    FCTL |=  0x02;                      //å¼€å§‹DMAå†™å…¥æ“ä½œ
+    while (FCTL & 0x80);                //ç­‰å¾…å†™å…¥å®Œæˆ
 }
 
 /***************************************************************
-*¹¦ÄÜ:½«FLASHµÚpageÒ³offset¿ªÊ¼µÄlength¸ö×Ö½Ú¶ÁÈëbufÖĞ
+*åŠŸèƒ½:å°†FLASHç¬¬pageé¡µoffsetå¼€å§‹çš„lengthä¸ªå­—èŠ‚è¯»å…¥bufä¸­
 ****************************************************************/
 void Flash_Read(uint8 page, uint16 offset, uint8 *buf, uint16 length)
 {
     uint8 *pData = (uint8 *)(offset + (page & 0xF) * 2048 + 0x8000);
-    uint8 memctr = MEMCTR;                           //Ôİ´æµ±Ç°´æ´¢Æ÷Ó³Éä×´Ì¬
-    MEMCTR = (MEMCTR & 0xF8)|((page >> 4) & 7);   //½«±»¶ÁFLASHÓ³Éäµ½XDATA
-    while (length--) *buf++ = *pData++;           //¶ÁÈ¡Êı¾İ
-    MEMCTR = memctr;                              //»Ø¸´´æ´¢Æ÷Ó³Éä×´Ì¬
+    uint8 memctr = MEMCTR;                           //æš‚å­˜å½“å‰å­˜å‚¨å™¨æ˜ å°„çŠ¶æ€
+    MEMCTR = (MEMCTR & 0xF8)|((page >> 4) & 7);   //å°†è¢«è¯»FLASHæ˜ å°„åˆ°XDATA
+    while (length--) *buf++ = *pData++;           //è¯»å–æ•°æ®
+    MEMCTR = memctr;                              //å›å¤å­˜å‚¨å™¨æ˜ å°„çŠ¶æ€
 }

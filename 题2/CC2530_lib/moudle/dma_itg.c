@@ -10,7 +10,7 @@
 
 
 //--------- write a byte and checks the ack signal----------------- 
-void M3_I2cWrite(uint8 dat)//ÔÚ´«ËÍÊı¾İÊ±£¬Êı¾İÏß±£³ÖÎÈ¶¨²»ÄÜÓĞÌø±ä
+void M3_I2cWrite(uint8 dat)//åœ¨ä¼ é€æ•°æ®æ—¶ï¼Œæ•°æ®çº¿ä¿æŒç¨³å®šä¸èƒ½æœ‰è·³å˜
 {
     uint8 i;
 
@@ -24,10 +24,10 @@ void M3_I2cWrite(uint8 dat)//ÔÚ´«ËÍÊı¾İÊ±£¬Êı¾İÏß±£³ÖÎÈ¶¨²»ÄÜÓĞÌø±ä
         {
             HAL_E2PROM_SDA_CLR();
         }
-        HAL_E2PROM_SCK_SET();//µ±Ê±ÖÓÏßÎª¸ßµçÆ½(SCL=1)Ê±¿ªÊ¼´«ËÍÊı¾İ
+        HAL_E2PROM_SCK_SET();//å½“æ—¶é’Ÿçº¿ä¸ºé«˜ç”µå¹³(SCL=1)æ—¶å¼€å§‹ä¼ é€æ•°æ®
         dat = dat << 1;
         halMcuWaitUs(2);
-        HAL_E2PROM_SCK_CLR();//´«ËÍÍêºóÊÍ·Å×ÜÏß£¨SCL=0£©
+        HAL_E2PROM_SCK_CLR();//ä¼ é€å®Œåé‡Šæ”¾æ€»çº¿ï¼ˆSCL=0ï¼‰
         halMcuWaitUs(2);
     }
     
@@ -39,14 +39,14 @@ uint8 M3_I2cRead(void)
     uint8 res = 0;
     uint8 cnt;
 
-    HAL_E2PROM_SDA_SET();//ÔÚ¶ÁÊı¾İÖ®Ç°£¬°ÑÊı¾İÏßÀ­¸ß£¨datesheetÉÏÓĞ½éÉÜ£©,È»ºó°ÑÊı¾İÏß¶Ë¿Ú¶ÔCPUÉèÖÃ³ÉÊäÈë¶Ë¿Ú
+    HAL_E2PROM_SDA_SET();//åœ¨è¯»æ•°æ®ä¹‹å‰ï¼ŒæŠŠæ•°æ®çº¿æ‹‰é«˜ï¼ˆdatesheetä¸Šæœ‰ä»‹ç»ï¼‰,ç„¶åæŠŠæ•°æ®çº¿ç«¯å£å¯¹CPUè®¾ç½®æˆè¾“å…¥ç«¯å£
     HAL_E2PROM_SDA_DIR_IN();
     halMcuWaitUs(2);
 
     for (cnt = 0; cnt < 8; cnt++)
     {
         res <<= 1;
-        if (HAL_E2PROM_SDA_VAL())//cpu»ñÈ¡SDA¶Ë¿ÚÉÏµÄÖµ
+        if (HAL_E2PROM_SDA_VAL())//cpuè·å–SDAç«¯å£ä¸Šçš„å€¼
         {
             res |= 0x01;
         }
@@ -55,7 +55,7 @@ uint8 M3_I2cRead(void)
         HAL_E2PROM_SCK_CLR();
         halMcuWaitUs(2);
     }
- // MCU_IO_OUTPUT(HAL_BOARD_IO_E2PROM_SDA_PORT, HAL_BOARD_IO_E2PROM_SDA_PIN,!ack);   /*µ±ack£½1Ê±À­µÍÊı¾İÏß*/
+ // MCU_IO_OUTPUT(HAL_BOARD_IO_E2PROM_SDA_PORT, HAL_BOARD_IO_E2PROM_SDA_PIN,!ack);   /*å½“ackï¼1æ—¶æ‹‰ä½æ•°æ®çº¿*/
   //  HAL_E2PROM_SDA_SET();
     
     HAL_E2PROM_SCK_SET();                            /*clk #9 for ack*/
@@ -66,7 +66,7 @@ uint8 M3_I2cRead(void)
     return res;
 }
 
-void M3_I2cStart(void)//ÔÚSCL±£³Ö¸ßµçÆ½ÆÚ¼ä£¬SDAÓÉ¸ß±äµÍ£¬ÎªÆğÊ¼ĞÅºÅ
+void M3_I2cStart(void)//åœ¨SCLä¿æŒé«˜ç”µå¹³æœŸé—´ï¼ŒSDAç”±é«˜å˜ä½ï¼Œä¸ºèµ·å§‹ä¿¡å·
 {
     HAL_E2PROM_SCK_SET();  //SCL=1
 
@@ -79,7 +79,7 @@ void M3_I2cStart(void)//ÔÚSCL±£³Ö¸ßµçÆ½ÆÚ¼ä£¬SDAÓÉ¸ß±äµÍ£¬ÎªÆğÊ¼ĞÅºÅ
 }
 
 //-------------------------------------------------------------------
-void M3_I2cStop(void)//ÔÚSCL±£³Ö¸ßµçÆ½ÆÚ¼ä£¬SDAÓÉµÍ±ä¸ß£¬ÎªÍ£Ö¹ĞÅºÅ
+void M3_I2cStop(void)//åœ¨SCLä¿æŒé«˜ç”µå¹³æœŸé—´ï¼ŒSDAç”±ä½å˜é«˜ï¼Œä¸ºåœæ­¢ä¿¡å·
 {    
       
    HAL_E2PROM_SCK_SET();  //SCL=1
@@ -110,17 +110,17 @@ void M3_I2cNAck(void)
     HAL_E2PROM_SCK_CLR();
 }
 
-void M3_Init(void)//³õÊ¼»¯ SDA=1¡¢SCL=1
+void M3_Init(void)//åˆå§‹åŒ– SDA=1ã€SCL=1
 {
     HAL_E2PROM_SDA_DIR_OUT();
     MCU_IO_OUTPUT(HAL_BOARD_IO_E2PROM_SCK_PORT, HAL_BOARD_IO_E2PROM_SCK_PIN,1);
 }
 
-void M3_WriteEEPROM(uint8 addr, uint8 ch)//ÍùEEPROMÀïĞ´Êı¾İ£¨ÏÈĞ´µØÖ·£¬ÔÚĞ´Êı¾İ£©
+void M3_WriteEEPROM(uint8 addr, uint8 ch)//å¾€EEPROMé‡Œå†™æ•°æ®ï¼ˆå…ˆå†™åœ°å€ï¼Œåœ¨å†™æ•°æ®ï¼‰
 {
     M3_I2cStart();
     
-    M3_I2cWrite(0xD2);//Ğ´Æ÷¼şµØÖ·£¬¶ÔÓÚAT24C02À´Ëµ£¬¸ßËÄÎ»¹Ì¶¨Îª1010,ºóÈıÎ»Ã»ÓĞÒâÒå£¬×îºóÒ»Î»Îª0Ê±Ğ´£¬Îª1Ê±¶Á
+    M3_I2cWrite(0xD2);//å†™å™¨ä»¶åœ°å€ï¼Œå¯¹äºAT24C02æ¥è¯´ï¼Œé«˜å››ä½å›ºå®šä¸º1010,åä¸‰ä½æ²¡æœ‰æ„ä¹‰ï¼Œæœ€åä¸€ä½ä¸º0æ—¶å†™ï¼Œä¸º1æ—¶è¯»
     M3_I2cAck();
     
     M3_I2cWrite(addr);
@@ -137,13 +137,13 @@ uint8 M3_ReadEEPROM(uint8 addr)
     uint8 res; 
     
     M3_I2cStart();    
-    M3_I2cWrite(0xD2); //Æ÷¼şÉèÖÃÎªĞ´×´Ì¬
+    M3_I2cWrite(0xD2); //å™¨ä»¶è®¾ç½®ä¸ºå†™çŠ¶æ€
     M3_I2cAck();     
     M3_I2cWrite(addr);
     M3_I2cAck();
     
     M3_I2cStart();    
-    M3_I2cWrite(0xD3); //Æ÷¼şÉèÖÃÎª¶Á×´Ì¬
+    M3_I2cWrite(0xD3); //å™¨ä»¶è®¾ç½®ä¸ºè¯»çŠ¶æ€
     M3_I2cAck();  
     
     res = M3_I2cRead();  

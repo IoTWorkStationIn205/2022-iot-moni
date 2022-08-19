@@ -114,9 +114,9 @@ Maintainer: Miguel Luis and Gregory Cristian
  */
 // Channel = { Frequency [Hz], Datarate }
 #if (NEWLAND_USE_RX_TX_RF_SET != false)
-#define RX_WND_2_CHANNEL                                  { RF_FREQUENCY, DR_0 /*新版配置，统一收发信道*/}
+#define RX_WND_2_CHANNEL                                  { RF_FREQUENCY, DR_0 /*鏂扮増閰嶇疆锛岀粺涓�鏀跺彂淇￠亾*/}
 #else
-#define RX_WND_2_CHANNEL                                  { 434665000, DR_0 /*原版配置，不可接收master信息*/}
+#define RX_WND_2_CHANNEL                                  { 434665000, DR_0 /*鍘熺増閰嶇疆锛屼笉鍙帴鏀秏aster淇℃伅*/}
 #endif //(NEWLAND_USE_RX_TX_RF_SET != false)
 
 /*!

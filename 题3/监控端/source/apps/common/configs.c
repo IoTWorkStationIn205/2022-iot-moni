@@ -5,21 +5,21 @@ uint8_t currentPage = MainPage;
 uint8_t sensorType = TemperatureDev;											
 uint8_t channelNum = 0;
 
-uint32_t rfFrequency=DEFAULT_RF_FREQUENCY; 			// Lora½áµãºÐÐÅµÀ
+uint32_t rfFrequency=DEFAULT_RF_FREQUENCY; 			// Loraç»“ç‚¹ç›’ä¿¡é“
 
 /**********************************************************************************************
-*º¯Êý£ºvoid ReadFlashCfg()
-*¹¦ÄÜ£º¶ÁÈ¡Lora½ÚµãºÐÅäÖÃ
-*ÊäÈë£ºÎÞ
-*Êä³ö£ºÎÞ
-*ÌØÊâËµÃ÷£ºÎÞ
+*å‡½æ•°ï¼švoid ReadFlashCfg()
+*åŠŸèƒ½ï¼šè¯»å–LoraèŠ‚ç‚¹ç›’é…ç½®
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜Žï¼šæ— 
 **********************************************************************************************/
 void ReadFlashCfg() {
     uint8_t sensorType = STMFLASH_ReadWord(FLASH_SENSOR_TYPE_ADDR);
     setSensorType(sensorType);
     if (sensorType > 6)
         sensorType = 0;
-    printf("´«¸ÐÆ÷ÀàÐÍ=%d\n",sensorType);
+    printf("ä¼ æ„Ÿå™¨ç±»åž‹=%d\n",sensorType);
 
     uint32_t rfFrequency = STMFLASH_ReadWord(FLASH_LG_FREQUENCY_ADDR);
     if(STMFLASH_ReadWord(FLASH_LG_FREQUENCY_ADDR) == 0)
@@ -32,7 +32,7 @@ void ReadFlashCfg() {
         rfFrequency = 400000000;
         channelNum = 0;
     }
-    printf("Æµ¶ÎÎª%d Hz\n",rfFrequency);
+    printf("é¢‘æ®µä¸º%d Hz\n",rfFrequency);
 }
 
 uint8_t getSensorType(){

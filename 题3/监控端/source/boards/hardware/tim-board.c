@@ -1,8 +1,8 @@
 /**********************************************************************************************************
-*Ê¹ÓÃËµÃ÷£º
-*TIM2ºÍTIM3½Ó¿Úº¯Êý£¬ÓÃ»§ÒªÊ¹ÓÃTIM2»ò3µÄ¶¨Ê±Æ÷ÖÐ¶ÏÊ±£¬ÏÈµ÷ÓÃTim2McuInit()»òTim3McuInit(),º¯ÊýµÄÊäÈë²ÎÊý¾ÍÊÇÖÐ
-*¶ÏÖÜÆÚ£¬µ¥Î»ÊÇMS£¬È¡Öµ1~1023MS£¬ÓÃ»§µÄÖÐ¶ÏÓ¦ÓÃ³ÌÐòÇëÌí¼Óµ½±¾ÎÄ¼þÄ©Î²µÄHAL_TIM_PeriodElapsedCallback()µÄº¯Êý¿Õ
-*°×´¦¡£¶¨Ê±Æ÷ÔËÐÐºó£¬Ã¿·êÖÐ¶ÏÖÜÆÚÊ±¼äµ½±ãÔËÐÐÖÐ¶ÏÄÚµÄÓ¦ÓÃ³ÌÐò£¬²¢ÇÒ°´ÖÐ¶ÏÖÜÆÚÖØ¸´¡£
+*ä½¿ç”¨è¯´æ˜Žï¼š
+*TIM2å’ŒTIM3æŽ¥å£å‡½æ•°ï¼Œç”¨æˆ·è¦ä½¿ç”¨TIM2æˆ–3çš„å®šæ—¶å™¨ä¸­æ–­æ—¶ï¼Œå…ˆè°ƒç”¨Tim2McuInit()æˆ–Tim3McuInit(),å‡½æ•°çš„è¾“å…¥å‚æ•°å°±æ˜¯ä¸­
+*æ–­å‘¨æœŸï¼Œå•ä½æ˜¯MSï¼Œå–å€¼1~1023MSï¼Œç”¨æˆ·çš„ä¸­æ–­åº”ç”¨ç¨‹åºè¯·æ·»åŠ åˆ°æœ¬æ–‡ä»¶æœ«å°¾çš„HAL_TIM_PeriodElapsedCallback()çš„å‡½æ•°ç©º
+*ç™½å¤„ã€‚å®šæ—¶å™¨è¿è¡ŒåŽï¼Œæ¯é€¢ä¸­æ–­å‘¨æœŸæ—¶é—´åˆ°ä¾¿è¿è¡Œä¸­æ–­å†…çš„åº”ç”¨ç¨‹åºï¼Œå¹¶ä¸”æŒ‰ä¸­æ–­å‘¨æœŸé‡å¤ã€‚
 *
 *
 **********************************************************************************************************/
@@ -37,12 +37,12 @@ TimerCallback timer4Callback = NULL;
 /* Private functions ---------------------------------------------------------*/
 
 /**********************************************************************************************
-*º¯Êý£ºvoid Tim2McuInit(uint16_t PeriodValueMs)
-*¹¦ÄÜ£ºTIM2¶¨Ê±Æ÷³õÊ¼»¯£¬ÉèÖÃÖÐ¶ÏÖÜÆÚPeriodValueMsºÁÃë
-*ÊäÈë£ºuint16_t PeriodValueMsÖÐ¶ÏÖÜÆÚ£¬µ¥Î»:ms£¬È¡Öµ1~1023
-*Êä³ö£ºÎÞ
-ÌØÊâËµÃ÷£º¶¨Ê±Æ÷ÊÇ16Î»¶¨Ê±Æ÷£¬×î´ó¶¨Ê±ÖÜÆÚÊÇ1024ms.Ô­Àí£º64000·ÖÆµ£¬¶¨Ê±1ms£¬ÖÜÆÚÎª64-1£¬ËùÒÔ¶¨Ê±
-*					16Î»×î´óÖµÎª65535£¬×î´óÖÜÆÚ65536=64*X£¬Çó½âX=1024
+*å‡½æ•°ï¼švoid Tim2McuInit(uint16_t PeriodValueMs)
+*åŠŸèƒ½ï¼šTIM2å®šæ—¶å™¨åˆå§‹åŒ–ï¼Œè®¾ç½®ä¸­æ–­å‘¨æœŸPeriodValueMsæ¯«ç§’
+*è¾“å…¥ï¼šuint16_t PeriodValueMsä¸­æ–­å‘¨æœŸï¼Œå•ä½:msï¼Œå–å€¼1~1023
+*è¾“å‡ºï¼šæ— 
+ç‰¹æ®Šè¯´æ˜Žï¼šå®šæ—¶å™¨æ˜¯16ä½å®šæ—¶å™¨ï¼Œæœ€å¤§å®šæ—¶å‘¨æœŸæ˜¯1024ms.åŽŸç†ï¼š64000åˆ†é¢‘ï¼Œå®šæ—¶1msï¼Œå‘¨æœŸä¸º64-1ï¼Œæ‰€ä»¥å®šæ—¶
+*					16ä½æœ€å¤§å€¼ä¸º65535ï¼Œæœ€å¤§å‘¨æœŸ65536=64*Xï¼Œæ±‚è§£X=1024
 **********************************************************************************************/
 void Tim2McuInit(uint16_t PeriodValueMs)
 {
@@ -80,7 +80,7 @@ void Tim2McuInit(uint16_t PeriodValueMs)
          + ClockDivision = 0
          + Counter direction = Up
     */
-    Tim2Handle.Init.Period            = PeriodValueMs*64 - 1;//ÖÜÆÚPeriodValueMsºÁÃë
+    Tim2Handle.Init.Period            = PeriodValueMs*64 - 1;//å‘¨æœŸPeriodValueMsæ¯«ç§’
     Tim2Handle.Init.Prescaler         = uwPrescalerValue;
     Tim2Handle.Init.ClockDivision     = 0;
     Tim2Handle.Init.CounterMode       = TIM_COUNTERMODE_UP;
@@ -88,7 +88,7 @@ void Tim2McuInit(uint16_t PeriodValueMs)
     if (HAL_TIM_Base_Init(&Tim2Handle) != HAL_OK)
     {
         /* Initialization Error */
-        printf("¶¨Ê±Æ÷2³õÊ¼»¯Ê§°Ü£¡\r\n");
+        printf("å®šæ—¶å™¨2åˆå§‹åŒ–å¤±è´¥ï¼\r\n");
     }
 
     /*##-2- Start the TIM Base generation in interrupt mode ####################*/
@@ -96,17 +96,17 @@ void Tim2McuInit(uint16_t PeriodValueMs)
     if (HAL_TIM_Base_Start_IT(&Tim2Handle) != HAL_OK)
     {
         /* Starting Error */
-        printf("¶¨Ê±Æ÷2Æô¶¯ÖÐ¶ÏÊ§°Ü£¡\r\n");
+        printf("å®šæ—¶å™¨2å¯åŠ¨ä¸­æ–­å¤±è´¥ï¼\r\n");
     }
 }
 
 /**********************************************************************************************
-*º¯Êý£ºvoid Tim3McuInit(uint16_t PeriodValueMs)
-*¹¦ÄÜ£ºTIM3¶¨Ê±Æ÷³õÊ¼»¯£¬ÉèÖÃÖÐ¶ÏÖÜÆÚPeriodValueMsºÁÃë
-*ÊäÈë£ºuint16_t PeriodValueMsÖÐ¶ÏÖÜÆÚ£¬µ¥Î»:0.25ms£¬È¡Öµ1~1023
-*Êä³ö£ºÎÞ
-*ÌØÊâËµÃ÷£º¶¨Ê±Æ÷ÊÇ16Î»¶¨Ê±Æ÷£¬×î´ó¶¨Ê±ÖÜÆÚÊÇ1024ms.Ô­Àí£º16000·ÖÆµ£¬¶¨Ê±0.25ms£¬ÖÜÆÚÎª64-1£¬ËùÒÔ¶¨Ê±
-*					16Î»×î´óÖµÎª65535£¬×î´óÖÜÆÚ65536=64*X£¬Çó½âX=1024
+*å‡½æ•°ï¼švoid Tim3McuInit(uint16_t PeriodValueMs)
+*åŠŸèƒ½ï¼šTIM3å®šæ—¶å™¨åˆå§‹åŒ–ï¼Œè®¾ç½®ä¸­æ–­å‘¨æœŸPeriodValueMsæ¯«ç§’
+*è¾“å…¥ï¼šuint16_t PeriodValueMsä¸­æ–­å‘¨æœŸï¼Œå•ä½:0.25msï¼Œå–å€¼1~1023
+*è¾“å‡ºï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜Žï¼šå®šæ—¶å™¨æ˜¯16ä½å®šæ—¶å™¨ï¼Œæœ€å¤§å®šæ—¶å‘¨æœŸæ˜¯1024ms.åŽŸç†ï¼š16000åˆ†é¢‘ï¼Œå®šæ—¶0.25msï¼Œå‘¨æœŸä¸º64-1ï¼Œæ‰€ä»¥å®šæ—¶
+*					16ä½æœ€å¤§å€¼ä¸º65535ï¼Œæœ€å¤§å‘¨æœŸ65536=64*Xï¼Œæ±‚è§£X=1024
 **********************************************************************************************/
 void Tim3McuInit(uint16_t PeriodValueMs)
 {
@@ -144,8 +144,8 @@ void Tim3McuInit(uint16_t PeriodValueMs)
          + ClockDivision = 0
          + Counter direction = Up
     */
-    //Tim3Handle.Init.Period            = (PeriodValueMs*64) - 1;//ÖÜÆÚPeriodValueMsºÁÃë
-    Tim3Handle.Init.Period            = (PeriodValueMs*16) - 1;//ÖÜÆÚPeriodValueMsºÁÃë
+    //Tim3Handle.Init.Period            = (PeriodValueMs*64) - 1;//å‘¨æœŸPeriodValueMsæ¯«ç§’
+    Tim3Handle.Init.Period            = (PeriodValueMs*16) - 1;//å‘¨æœŸPeriodValueMsæ¯«ç§’
     Tim3Handle.Init.Prescaler         = uwPrescalerValue;
     Tim3Handle.Init.ClockDivision     = 0;
     Tim3Handle.Init.CounterMode       = TIM_COUNTERMODE_UP;
@@ -153,7 +153,7 @@ void Tim3McuInit(uint16_t PeriodValueMs)
     if (HAL_TIM_Base_Init(&Tim3Handle) != HAL_OK)
     {
         /* Initialization Error */
-        printf("¶¨Ê±Æ÷3³õÊ¼»¯Ê§°Ü£¡\r\n");
+        printf("å®šæ—¶å™¨3åˆå§‹åŒ–å¤±è´¥ï¼\r\n");
     }
 
     /*##-2- Start the TIM Base generation in interrupt mode ####################*/
@@ -161,19 +161,19 @@ void Tim3McuInit(uint16_t PeriodValueMs)
     if (HAL_TIM_Base_Start_IT(&Tim3Handle) != HAL_OK)
     {
         /* Starting Error */
-        printf("¶¨Ê±Æ÷3Æô¶¯ÖÐ¶ÏÊ§°Ü£¡\r\n");
+        printf("å®šæ—¶å™¨3å¯åŠ¨ä¸­æ–­å¤±è´¥ï¼\r\n");
     }
 }
 
 
 
 /**********************************************************************************************
-*º¯Êý£ºvoid Tim4McuInit(uint16_t PeriodValueMs)
-*¹¦ÄÜ£ºTIM4¶¨Ê±Æ÷³õÊ¼»¯£¬ÉèÖÃÖÐ¶ÏÖÜÆÚPeriodValueMsºÁÃë
-*ÊäÈë£ºuint16_t PeriodValueMsÖÐ¶ÏÖÜÆÚ£¬µ¥Î»:0.25ms£¬È¡Öµ1~1023
-*Êä³ö£ºÎÞ
-*ÌØÊâËµÃ÷£º¶¨Ê±Æ÷ÊÇ16Î»¶¨Ê±Æ÷£¬×î´ó¶¨Ê±ÖÜÆÚÊÇ1024ms.Ô­Àí£º16000·ÖÆµ£¬¶¨Ê±0.25ms£¬ÖÜÆÚÎª64-1£¬ËùÒÔ¶¨Ê±
-*					16Î»×î´óÖµÎª65535£¬×î´óÖÜÆÚ65536=64*X£¬Çó½âX=1024
+*å‡½æ•°ï¼švoid Tim4McuInit(uint16_t PeriodValueMs)
+*åŠŸèƒ½ï¼šTIM4å®šæ—¶å™¨åˆå§‹åŒ–ï¼Œè®¾ç½®ä¸­æ–­å‘¨æœŸPeriodValueMsæ¯«ç§’
+*è¾“å…¥ï¼šuint16_t PeriodValueMsä¸­æ–­å‘¨æœŸï¼Œå•ä½:0.25msï¼Œå–å€¼1~1023
+*è¾“å‡ºï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜Žï¼šå®šæ—¶å™¨æ˜¯16ä½å®šæ—¶å™¨ï¼Œæœ€å¤§å®šæ—¶å‘¨æœŸæ˜¯1024ms.åŽŸç†ï¼š16000åˆ†é¢‘ï¼Œå®šæ—¶0.25msï¼Œå‘¨æœŸä¸º64-1ï¼Œæ‰€ä»¥å®šæ—¶
+*					16ä½æœ€å¤§å€¼ä¸º65535ï¼Œæœ€å¤§å‘¨æœŸ65536=64*Xï¼Œæ±‚è§£X=1024
 **********************************************************************************************/
 void Tim4McuInit(uint16_t PeriodValueMs)
 {
@@ -211,8 +211,8 @@ void Tim4McuInit(uint16_t PeriodValueMs)
          + ClockDivision = 0
          + Counter direction = Up
     */
-    //Tim4Handle.Init.Period            = (PeriodValueMs*64) - 1;//ÖÜÆÚPeriodValueMsºÁÃë
-    Tim4Handle.Init.Period            = (PeriodValueMs*16) - 1;//ÖÜÆÚPeriodValueMsºÁÃë
+    //Tim4Handle.Init.Period            = (PeriodValueMs*64) - 1;//å‘¨æœŸPeriodValueMsæ¯«ç§’
+    Tim4Handle.Init.Period            = (PeriodValueMs*16) - 1;//å‘¨æœŸPeriodValueMsæ¯«ç§’
     Tim4Handle.Init.Prescaler         = uwPrescalerValue;
     Tim4Handle.Init.ClockDivision     = 0;
     Tim4Handle.Init.CounterMode       = TIM_COUNTERMODE_UP;
@@ -220,7 +220,7 @@ void Tim4McuInit(uint16_t PeriodValueMs)
     if (HAL_TIM_Base_Init(&Tim4Handle) != HAL_OK)
     {
         /* Initialization Error */
-        printf("¶¨Ê±Æ÷4³õÊ¼»¯Ê§°Ü£¡\r\n");
+        printf("å®šæ—¶å™¨4åˆå§‹åŒ–å¤±è´¥ï¼\r\n");
     }
 
     /*##-2- Start the TIM Base generation in interrupt mode ####################*/
@@ -228,7 +228,7 @@ void Tim4McuInit(uint16_t PeriodValueMs)
     if (HAL_TIM_Base_Start_IT(&Tim4Handle) != HAL_OK)
     {
         /* Starting Error */
-        printf("¶¨Ê±Æ÷4Æô¶¯ÖÐ¶ÏÊ§°Ü£¡\r\n");
+        printf("å®šæ—¶å™¨4å¯åŠ¨ä¸­æ–­å¤±è´¥ï¼\r\n");
     }
 }
 
@@ -328,33 +328,33 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if(htim->Instance == TIM2)
     {
-        /*TIM2ÓÃ»§ÖÐ¶ÏÓ¦ÓÃ³ÌÐòÇëÌí¼ÓÔÚÏÂ·½¿Õ°×´¦*/
-        //========================¡·TIM2¿Õ°×´¦¿ªÊ¼
+        /*TIM2ç”¨æˆ·ä¸­æ–­åº”ç”¨ç¨‹åºè¯·æ·»åŠ åœ¨ä¸‹æ–¹ç©ºç™½å¤„*/
+        //========================ã€‹TIM2ç©ºç™½å¤„å¼€å§‹
 				//Time2Handler();
 				if (timer2Callback != NULL) {
 					timer2Callback();
 				}
-        //¡¶========================TIM2¿Õ°×´¦½áÊø
+        //ã€Š========================TIM2ç©ºç™½å¤„ç»“æŸ
     }
     else if(htim->Instance == TIM3)
     {
-        /*TIM3ÓÃ»§ÖÐ¶ÏÓ¦ÓÃ³ÌÐòÇëÌí¼ÓÔÚÏÂ·½*/
-        //========================¡·TIM3¿Õ°×´¦¿ªÊ¼
+        /*TIM3ç”¨æˆ·ä¸­æ–­åº”ç”¨ç¨‹åºè¯·æ·»åŠ åœ¨ä¸‹æ–¹*/
+        //========================ã€‹TIM3ç©ºç™½å¤„å¼€å§‹
 				//Time3Handler();
 				if (timer3Callback != NULL) {
 					timer3Callback();
 				}
-        //¡¶========================TIM3¿Õ°×´¦½áÊø
+        //ã€Š========================TIM3ç©ºç™½å¤„ç»“æŸ
     }
 		else if(htim->Instance == TIM4)
     {
-        /*TIM3ÓÃ»§ÖÐ¶ÏÓ¦ÓÃ³ÌÐòÇëÌí¼ÓÔÚÏÂ·½*/
-        //========================¡·TIM3¿Õ°×´¦¿ªÊ¼
+        /*TIM3ç”¨æˆ·ä¸­æ–­åº”ç”¨ç¨‹åºè¯·æ·»åŠ åœ¨ä¸‹æ–¹*/
+        //========================ã€‹TIM3ç©ºç™½å¤„å¼€å§‹
 				//Time3Handler();
 				if (timer4Callback != NULL) {
 					timer4Callback();
 				}
-        //¡¶========================TIM3¿Õ°×´¦½áÊø
+        //ã€Š========================TIM3ç©ºç™½å¤„ç»“æŸ
     }
 
 

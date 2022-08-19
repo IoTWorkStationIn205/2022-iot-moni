@@ -5,8 +5,8 @@
 #include "usart1-board.h"
 
 
-extern TIM_HandleTypeDef TIM3_Handler;      //¶¨Ê±Æ÷3PWM¾ä±ú 
+extern TIM_HandleTypeDef TIM3_Handler;      //å®šæ—¶å™¨3PWMå¥æŸ„ 
 
-void TIM3_Init(uint16_t arr,uint16_t psc);    //¶¨Ê±Æ÷³õÊ¼»¯
+void TIM3_Init(uint16_t arr,uint16_t psc);    //å®šæ—¶å™¨åˆå§‹åŒ–
 #endif
 

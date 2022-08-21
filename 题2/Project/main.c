@@ -14,8 +14,8 @@
 
 uint32 counter = 0;
 uint8 EPC_Txbuf[16] = {0xFF ,0x55 ,0x00 ,0x00 ,0x03 ,0x0A ,0x07 ,0xBB ,0x00 ,0x22 ,0x00 ,0x00 ,0x22 ,0x7E ,0xC7 ,0xC0};
-uint8 EPC_a[12] = {0xE2 ,0x00 ,0x00 ,0x1D ,0x33 ,0x0E ,0x00 ,0x83 ,0x24 ,0x80 ,0x3A ,0x79};
-uint8 EPC_b[12] = {0xE2 ,0x00 ,0x00 ,0x1D ,0x33 ,0x0E ,0x00 ,0x79 ,0x24 ,0x80 ,0x32 ,0xC7};
+uint8 EPC_a[12] = {0xE2 ,0x00 ,0x00 ,0x1D ,0x33 ,0x0E ,0x02 ,0x09 ,0x24 ,0x00 ,0xBA ,0xC0};
+uint8 EPC_b[12] = {0xE2 ,0x00 ,0x41 ,0x06 ,0x27 ,0x11 ,0x00 ,0x38 ,0x23 ,0x00 ,0x2A ,0x91};
 
 
 void Io_Init(void){
@@ -42,6 +42,8 @@ void Io_Init(void){
 
 
 int CheakEpc(uint8* buf){
+  halUartWrite(buf,12);
+  
   for(int a = 0;a<12;a++){
     if(buf[a] != EPC_a[a]){
       break;
@@ -62,6 +64,20 @@ int CheakEpc(uint8* buf){
    return -1;
 } 
 
+int Boli(uint8* buf,uint8 num){
+  uint8 bufPtr = 0;
+  uint8 ii = 0;
+
+  for(int a = 0;a < num;a++){
+    bufPtr += 8+(a*16);
+    ii = CheakEpc((buf+bufPtr));
+    if(ii == 1 || ii == 2){
+      return ii;
+    }
+  }
+  
+  return ii;
+}
 
 void Clear_Data(void){
   P1_0 = 0;
@@ -94,8 +110,9 @@ void main(void)
       halUartWrite(EPC_Txbuf,16);
       halMcuWaitMs(1500);
       len = halUartRead(Rxbuf,128);
-      if(len > 17){
-        ii = CheakEpc(Rxbuf+15);
+      if(len > 18){
+        ii = Boli(Rxbuf+7,Rxbuf[6]/18);
+        //ii = CheakEpc(Rxbuf+15);
         if(ii == 1){
           Clear_Data();
           P1_0 = 1;

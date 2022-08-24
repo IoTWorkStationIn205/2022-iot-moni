@@ -86,7 +86,6 @@ void Clear_Data(void){
   P1_4 = 0;
   
   P2_0 = 0;
-
   P1_7 = 0;
   
   counter = 0;

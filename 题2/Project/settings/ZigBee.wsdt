@@ -18,7 +18,7 @@
           
           
           
-        <Column0>134</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>191</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
     <TerminalIO/><Debug-Log><ColumnWidth0>21</ColumnWidth0><ColumnWidth1>1433</ColumnWidth1></Debug-Log></Static>
     <Windows>
@@ -52,14 +52,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>83</YPos><SelStart>1667</SelStart><SelEnd>1667</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_cc8051.h</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>1229</SelStart><SelEnd>1242</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\mylib\TIMER.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>850</SelStart><SelEnd>850</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_uart1.c</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>434</SelStart><SelEnd>456</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_mcu.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>91</SelStart><SelEnd>91</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_uart.c</Filename><XPos>0</XPos><YPos>162</YPos><SelStart>5515</SelStart><SelEnd>5527</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_mcu.c</Filename><XPos>0</XPos><YPos>40</YPos><SelStart>1636</SelStart><SelEnd>1636</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>235</SelStart><SelEnd>235</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_cc8051.h</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>1229</SelStart><SelEnd>1242</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\mylib\TIMER.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>850</SelStart><SelEnd>850</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_uart1.c</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>434</SelStart><SelEnd>456</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_mcu.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>91</SelStart><SelEnd>91</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_uart.c</Filename><XPos>0</XPos><YPos>162</YPos><SelStart>5515</SelStart><SelEnd>5527</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\CC2530_lib\common\hal_mcu.c</Filename><XPos>0</XPos><YPos>40</YPos><SelStart>1636</SelStart><SelEnd>1636</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-061c1af8><key>iaridepm.enu1</key></Toolbar-061c1af8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>370</Bottom><Right>208</Right><x>-2</x><y>-2</y><xscreen>176</xscreen><yscreen>163</yscreen><sizeHorzCX>159420</sizeHorzCX><sizeHorzCY>282986</sizeHorzCY><sizeVertCX>190217</sizeVertCX><sizeVertCY>645833</sizeVertCY></Rect></Wnd3></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>161</Bottom><Right>1106</Right><x>-2</x><y>-2</y><xscreen>1108</xscreen><yscreen>163</yscreen><sizeHorzCX>1003623</sizeHorzCX><sizeHorzCY>282986</sizeHorzCY><sizeVertCX>159420</sizeVertCX><sizeVertCY>282986</sizeVertCY></Rect></Wnd2></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-05ae1c80><key>iaridepm.enu1</key></Toolbar-05ae1c80></Sizes></Row0></Top><Left><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>561</Bottom><Right>282</Right><x>-2</x><y>-2</y><xscreen>238</xscreen><yscreen>238</yscreen><sizeHorzCX>159411</sizeHorzCX><sizeHorzCY>282660</sizeHorzCY><sizeVertCX>190221</sizeVertCX><sizeVertCY>668646</sizeVertCY></Rect></Wnd3></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>236</Bottom><Right>1495</Right><x>-2</x><y>-2</y><xscreen>1497</xscreen><yscreen>238</yscreen><sizeHorzCX>1002679</sizeHorzCX><sizeHorzCY>282660</sizeHorzCY><sizeVertCX>159411</sizeVertCX><sizeVertCY>282660</sizeVertCY></Rect></Wnd2></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

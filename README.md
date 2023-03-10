@@ -1,7 +1,7 @@
 # 简介
 2022全国职业院校国赛代码
 
-![https://img.shields.io/badge/license-Apache-%230c7dbe]
+![](https://img.shields.io/badge/license-Apache-%230c7dbe)
 
 # 可能出现的疑问
 
